@@ -4,19 +4,42 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin rounded">
+    <a href="{{ path('homepage') }}" class="brand text-center">
+        <img src="{{ asset('frontend/img/logo.png') }}" srcset="{{ asset('frontend/img/logo.png 2x') }}" alt=""/>
+    </a>
+    <h2 class="form-signin-heading text-center">
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% else %}
+            Se connecter
+        {% endif %}
+    </h2>
+
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    <div class="form-group">
+        <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Login" required="required" class="form-control form-control-pill" />
+    </div>
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
+    <div class="form-group">
+        <input type="password" required="required" class="form-control form-control-pill" id="password" name="_password" placeholder="Mot de passe" />
+    </div>
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    <div class="checkbox mb-4 mt-4">
+        <label class="custom-control custom-checkbox">
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="custom-control-input" />
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">
+                        Se souvenir de moi
+                    </span>
+        </label>
+        <a href="#" class="float-right text-muted">Mot de passe oublié ?</a>
+    </div>
+    <div class="form-group ">
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-lg btn-pill btn-block btn-danger" />
+    </div>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
