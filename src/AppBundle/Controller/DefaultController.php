@@ -13,9 +13,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $locale = $request->getLocale();
+        if ($locale === "fr"){
+            return $this->render('default/index.html.twig');
+        }else{
+            return $this->render('default/index_en.html.twig');
+        }
+    }
+
+    /**
+     * @Route("/backend/", name="backend")
+     */
+    public function backendAction()
+    {
+        return $this->render('default/index.html.twig');
     }
 }
