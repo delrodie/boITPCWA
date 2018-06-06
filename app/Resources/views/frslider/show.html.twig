@@ -1,0 +1,48 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ frSlider.titre }}{% endblock %}
+
+{% block body %}
+    <main class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0"> Gestion des sliders
+                <small></small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="default-color">Accueil</a></li>
+                <li class="breadcrumb-item active">slider</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+
+
+            <div class="row mt-5 mb-3">
+                <div class="col-md-12 ">
+                    <h5 class=" ">{{ frSlider.titre }}</h5>
+                    <p>{{ frSlider.description }}</p>
+                </div>
+            </div>
+
+            <div class="card-deck">
+                <div class="card mb-9">
+                    <img src="{{ vich_uploader_asset(frSlider, 'imageFile') }}" alt="{{ frSlider.titre }}" title="{{ frSlider.titre }}"  class="card-img-top img-fluid"/>
+                    <div class="card-body">
+                        <a href="{{ path('backend_frslider_edit', {'slug': frSlider.slug}) }}" class="btn btn-outline-danger"><i class="fa fa-edit"></i> Modifier</a>
+                        <a href="{{ path('backend_frslider_index') }}" class="btn btn-outline-secondary"><i class="fa fa-list"></i> Liste des sliders</a>
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-sm-offset-8 ml-auto">
+                                {{ form_start(delete_form, {'attr': {'onsubmit': "return confirm('Etes-vous sûr de vouloir vraiment supprimer ce slider?');"}}) }}
+                                <input type="submit" value="Supprimer" class="btn btn-danger">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}
+
+
