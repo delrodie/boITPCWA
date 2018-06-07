@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Frtype</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ frType.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ frType.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if frType.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ frType.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ frType.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ frType.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ frType.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ frType.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_frtype_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_frtype_edit', { 'id': frType.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

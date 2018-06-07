@@ -1,0 +1,101 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Liste des rubriques de presentations{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0">
+                Gestion des rubriques de presentation
+                <small> </small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="default-color">Accueil</a></li>
+                <li class="breadcrumb-item active">Liste des rubriques de presentation</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-shadow mb-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Liste des rubriques de presentation
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#ID</th>
+                                    <th scope="col" class="text-center">Libelle</th>
+                                    <th scope="col" class="text-center">Statut</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for frType in frTypes %}
+                                    <tr>
+                                        <th scope="col" class="text-right">{{ loop.index }}</th>
+                                        <td>{{ frType.libelle }}</td>
+                                        <td class="text-center">
+                                            {% if (frType.statut) %}
+                                                <span class="badge badge-pill badge-success">Actif</span>
+                                            {% else %}
+                                                <span class="badge badge-pill badge-danger">Désactivé</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ path('backend_frtype_edit', {'slug': frType.slug}) }}"><i class="fa fa-edit"></i></a> |
+                                            <a href="{{ path('backend_frtype_edit', {'slug': frType.slug}) }}" onclick="return(confirm('Etes-vous sûr de vouloir supprimer {{ frType.libelle }} ?'));"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        Enregistrement des rubriques de presentation
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    {{ form_start(form, {'attr': {'class': 'right-text-label-form', 'id':'signupForm'}}) }}
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 control-label" for="titre">Libelle</label>
+                                        <div class="col-sm-8">
+                                            {{ form_widget(form.libelle) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-sm-offset-4">.</div>
+                                        <label class="custom-control custom-checkbox">
+                                            {{ form_widget(form.statut) }}
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Statut</span>
+                                        </label>
+                                    </div>
+                                    {{ form_rest(form) }}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 ml-auto">
+                                            <button class="btn btn-primary" name="signup">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
