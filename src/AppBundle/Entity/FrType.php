@@ -37,6 +37,11 @@ class FrType
     private $statut;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FrPresentation", mappedBy="type")
+     */
+    private $presentation;
+
+    /**
      * @var string
      *
      * @Gedmo\Slug(fields={"libelle"})
@@ -253,5 +258,51 @@ class FrType
     public function getModifieLe()
     {
         return $this->modifieLe;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->presentation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add presentation
+     *
+     * @param \AppBundle\Entity\FrPresentation $presentation
+     *
+     * @return FrType
+     */
+    public function addPresentation(\AppBundle\Entity\FrPresentation $presentation)
+    {
+        $this->presentation[] = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * Remove presentation
+     *
+     * @param \AppBundle\Entity\FrPresentation $presentation
+     */
+    public function removePresentation(\AppBundle\Entity\FrPresentation $presentation)
+    {
+        $this->presentation->removeElement($presentation);
+    }
+
+    /**
+     * Get presentation
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPresentation()
+    {
+        return $this->presentation;
+    }
+
+    public function __toString()
+    {
+        return $this->getLibelle();
     }
 }
