@@ -1,0 +1,102 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Presentation categories management{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0">
+                Presentation categories management
+                <small> </small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('backend') }}" class="default-color">Home</a></li>
+                <li class="breadcrumb-item active">Presentation categories list</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-shadow mb-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Presentation categories list
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#ID</th>
+                                    <th scope="col" class="text-center">Title</th>
+                                    <th scope="col" class="text-center">Status</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for enType in enTypes %}
+                                    <tr>
+                                        <th scope="col" class="text-right">{{ loop.index }}</th>
+                                        <td>{{ enType.libelle }}</td>
+                                        <td class="text-center">
+                                            {% if (enType.statut) %}
+                                                <span class="badge badge-pill badge-success">Enabled</span>
+                                            {% else %}
+                                                <span class="badge badge-pill badge-danger">Disenabled</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ path('backend_entype_edit', {'slug': enType.slug}) }}"><i class="fa fa-edit"></i></a> |
+                                            <a href="{{ path('backend_entype_edit', {'slug': enType.slug}) }}" onclick="return(confirm('Do you really want to delete  {{ enType.libelle }} ?'));"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-shadow mb-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        Create of presenation category
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    {{ form_start(form, {'attr': {'class': 'right-text-label-form', 'id':'signupForm'}}) }}
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 control-label" for="titre">Title</label>
+                                        <div class="col-sm-8">
+                                            {{ form_widget(form.libelle) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 col-sm-offset-4">.</div>
+                                        <label class="custom-control custom-checkbox">
+                                            {{ form_widget(form.statut) }}
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Enabled</span>
+                                        </label>
+                                    </div>
+                                    {{ form_rest(form) }}
+                                    <div class="form-group row">
+                                        <div class="col-sm-5 ml-auto">
+                                            <button type="reset" class="btn btn-outline-primary" name="signup">Cancel</button>
+                                            <button class="btn btn-primary" name="signup">Save</button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
