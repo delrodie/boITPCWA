@@ -23,6 +23,17 @@ class FrArticleRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * Recherche de l'article selon l'ID
+     */
+    public function findArticle($article)
+    {
+        return $this->createQueryBuilder('a')
+                    ->where('a.id = :id')
+                    ->setParameter('id', $article)
+            ;
+    }
+
+    /**
      * Fonction de recherche
      */
     public function queryArticle()

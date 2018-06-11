@@ -154,6 +154,15 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
+        photo_image:
+            uri_prefix:         /uploads/Galeries
+            upload_destination: '%kernel.root_dir%/../web/uploads/Galeries'
+            namer: vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
 liip_imagine:
     resolvers:
         default:
@@ -183,6 +192,36 @@ liip_imagine:
             filters:
                 relative_resize:
                     widen: 150
+
+        bo_photoarticle:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [231, 149], mode: outbound }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [232, 150], position: center, color: '#cccccc'}
+
+        bo_photoarticle_edit:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [406, 200], mode: outbound }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [407, 201], position: center, color: '#ffffff'}
+
+        bo_photoarticle_show:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [598, 398], mode: outbound }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [600, 400], position: center, color: '#ffffff'}
 
 ivory_ck_editor:
     default_config: default

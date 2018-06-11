@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * FrArticle
+ * Photo
  *
- * @ORM\Table(name="fr_article")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FrArticleRepository")
+ * @ORM\Table(name="photo")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
  * @Vich\Uploadable
  */
-class FrArticle
+class Photo
 {
     /**
      * @var int
@@ -28,47 +28,20 @@ class FrArticle
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255, nullable=true)
      */
     private $titre;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="resume", type="text", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FrArticle", inversedBy="photos")
+     * @ORM\JoinColumn(name="frArticle_id", referencedColumnName="id")
      */
-    private $resume;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="text", nullable=true)
-     */
-    private $contenu;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tags", type="string", length=255, nullable=true)
-     */
-    private $tags;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="statut", type="boolean", nullable=true)
-     */
-    private $statut;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="article")
-     */
-    private $photos;
+    private $article;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="frarticle_image", fileNameProperty="imageName", size="imageSize")
+     * @Vich\UploadableField(mapping="photo_image", fileNameProperty="imageName", size="imageSize")
      *
      * @var File
      */
@@ -104,7 +77,7 @@ class FrArticle
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setImageFile(File $image = null)
     {
@@ -183,7 +156,7 @@ class FrArticle
      *
      * @param string $titre
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setTitre($titre)
     {
@@ -203,107 +176,11 @@ class FrArticle
     }
 
     /**
-     * Set resume
-     *
-     * @param string $resume
-     *
-     * @return FrArticle
-     */
-    public function setResume($resume)
-    {
-        $this->resume = $resume;
-
-        return $this;
-    }
-
-    /**
-     * Get resume
-     *
-     * @return string
-     */
-    public function getResume()
-    {
-        return $this->resume;
-    }
-
-    /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return FrArticle
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu
-     *
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-    /**
-     * Set tags
-     *
-     * @param string $tags
-     *
-     * @return FrArticle
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Get tags
-     *
-     * @return string
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Set statut
-     *
-     * @param boolean $statut
-     *
-     * @return FrArticle
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return bool
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Set imageName
      *
      * @param string $imageName
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setImageName($imageName)
     {
@@ -327,7 +204,7 @@ class FrArticle
      *
      * @param integer $imageSize
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setImageSize($imageSize)
     {
@@ -351,7 +228,7 @@ class FrArticle
      *
      * @param \DateTime $updatedAt
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -375,7 +252,7 @@ class FrArticle
      *
      * @param string $slug
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setSlug($slug)
     {
@@ -399,7 +276,7 @@ class FrArticle
      *
      * @param string $publiePar
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setPubliePar($publiePar)
     {
@@ -423,7 +300,7 @@ class FrArticle
      *
      * @param string $modifiePar
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setModifiePar($modifiePar)
     {
@@ -447,7 +324,7 @@ class FrArticle
      *
      * @param \DateTime $publieLe
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setPublieLe($publieLe)
     {
@@ -471,7 +348,7 @@ class FrArticle
      *
      * @param \DateTime $modifieLe
      *
-     * @return FrArticle
+     * @return Photo
      */
     public function setModifieLe($modifieLe)
     {
@@ -489,50 +366,28 @@ class FrArticle
     {
         return $this->modifieLe;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Add photo
+     * Set article
      *
-     * @param \AppBundle\Entity\Photo $photo
+     * @param \AppBundle\Entity\FrArticle $article
      *
-     * @return FrArticle
+     * @return Photo
      */
-    public function addPhoto(\AppBundle\Entity\Photo $photo)
+    public function setArticle(\AppBundle\Entity\FrArticle $article = null)
     {
-        $this->photos[] = $photo;
+        $this->article = $article;
 
         return $this;
     }
 
     /**
-     * Remove photo
+     * Get article
      *
-     * @param \AppBundle\Entity\Photo $photo
+     * @return \AppBundle\Entity\FrArticle
      */
-    public function removePhoto(\AppBundle\Entity\Photo $photo)
+    public function getArticle()
     {
-        $this->photos->removeElement($photo);
-    }
-
-    /**
-     * Get photos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    public function __toString()
-    {
-        return $this->getTitre();
+        return $this->article;
     }
 }
