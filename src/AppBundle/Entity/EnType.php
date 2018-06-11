@@ -37,6 +37,11 @@ class EnType
     private $statut;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EnPresentation", mappedBy="type")
+     */
+    private $presentations;
+
+    /**
      * @var string
      *
      * @Gedmo\Slug(fields={"libelle"})
@@ -253,5 +258,51 @@ class EnType
     public function getModifieLe()
     {
         return $this->modifieLe;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->presentations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add presentation
+     *
+     * @param \AppBundle\Entity\EnPresentation $presentation
+     *
+     * @return EnType
+     */
+    public function addPresentation(\AppBundle\Entity\EnPresentation $presentation)
+    {
+        $this->presentations[] = $presentation;
+
+        return $this;
+    }
+
+    /**
+     * Remove presentation
+     *
+     * @param \AppBundle\Entity\EnPresentation $presentation
+     */
+    public function removePresentation(\AppBundle\Entity\EnPresentation $presentation)
+    {
+        $this->presentations->removeElement($presentation);
+    }
+
+    /**
+     * Get presentations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPresentations()
+    {
+        return $this->presentations;
+    }
+
+    public function __toString()
+    {
+        return $this->getLibelle();
     }
 }

@@ -3,51 +3,51 @@
 {% block title %}Liste des articles de presentations{% endblock %}
 
 {% block body %}
-    <main class="main-content">
-        <div class="page-title">
-            <h4 class="mb-0"> Gestion des articles de presentations
-                <small></small>
-            </h4>
-            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
-                <li class="breadcrumb-item"><a href="#" class="default-color">Accueil</a></li>
-                <li class="breadcrumb-item active">liste des articles de presentations</li>
-            </ol>
+<main class="main-content">
+    <div class="page-title">
+        <h4 class="mb-0"> Gestion des articles de presentations
+            <small></small>
+        </h4>
+        <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+            <li class="breadcrumb-item"><a href="#" class="default-color">Accueil</a></li>
+            <li class="breadcrumb-item active">liste des articles de presentations</li>
+        </ol>
+    </div>
+
+    <div class="container-fluid">
+
+
+        <div class="row mt-5 mb-3">
+            <div class="col-md-12 text-right">
+                <a href="{{ path('backend_frpresentation_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Ajouter un article de presentation</a>
+            </div>
+            <br>
         </div>
 
-        <div class="container-fluid">
-
-
-            <div class="row mt-5 mb-3">
-                <div class="col-md-12 text-right">
-                    <a href="{{ path('backend_frpresentation_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Ajouter un article de presentation</a>
-                </div>
-                <br>
-            </div>
-
-            <div class="card-deck">
-                {% for frPresentation in frPresentations %}
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card mb-4" style="height: 500px; overflow-y: auto;">
-                            <img src="{{ vich_uploader_asset(frPresentation, 'imageFile') }}" alt="{{ frPresentation.titre }}" title="{{ frPresentation.titre }}"  class="card-img-top img-fluid"/>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ frPresentation.titre }}</h5>
-                                <p class="card-text">{{ frPresentation.resume|raw }}</p>
-                                <!--<a href="#" class="btn btn-outline-danger">Apperçu</a>-->
-                                <a href="{{ path('backend_frpresentation_show', {'slug': frPresentation.slug}) }}" class="btn btn-outline-primary">> Lire la suite</a>
-                                {% if (frPresentation.statut) %}
-                                    <a href="#" class="btn btn-success" title="Actif"><i class="fa fa-check-square-o"></i> </a>
-                                {% else %}
-                                    <a href="#" class="btn btn-danger" title="Desactivé"><i class="fa fa-chain-broken"></i> </a>
-                                {% endif %}
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Publié le {{ frPresentation.publieLe|date('d-m-Y H:i:s') }} par {{ frPresentation.publiePar }}</small>
-                            </div>
+        <div class="card-deck">
+            {% for frPresentation in frPresentations %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="card mb-4" style="height: 500px; overflow-y: auto;">
+                        <img src="{{ vich_uploader_asset(frPresentation, 'imageFile') }}" alt="{{ frPresentation.titre }}" title="{{ frPresentation.titre }}"  class="card-img-top img-fluid"/>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ frPresentation.titre }}</h5>
+                            <p class="card-text">{{ frPresentation.resume|raw }}</p>
+                            <!--<a href="#" class="btn btn-outline-danger">Apperçu</a>-->
+                            <a href="{{ path('backend_frpresentation_show', {'slug': frPresentation.slug}) }}" class="btn btn-outline-primary">> Lire la suite</a>
+                            {% if (frPresentation.statut) %}
+                                <a href="#" class="btn btn-success" title="Actif"><i class="fa fa-check-square-o"></i> </a>
+                            {% else %}
+                                <a href="#" class="btn btn-danger" title="Desactivé"><i class="fa fa-chain-broken"></i> </a>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Publié le {{ frPresentation.publieLe|date('d-m-Y H:i:s') }} par {{ frPresentation.publiePar }}</small>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-
+                </div>
+            {% endfor %}
         </div>
-    </main>
+
+    </div>
+</main>
 {% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Presentation posts list{% endblock %}
+
+{% block body %}
+    <main class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0"> Presentation posts management
+                <small></small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('backend') }}" class="default-color">Home</a></li>
+                <li class="breadcrumb-item active">Presentation posts list</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+
+
+            <div class="row mt-5 mb-3">
+                <div class="col-md-12 text-right">
+                    <a href="{{ path('backend_enpresentation_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Create a new presentation post</a>
+                </div>
+                <br>
+            </div>
+
+            <div class="card-deck">
+                {% for enPresentation in enPresentations %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-4" style="height: 500px; overflow-y: auto;">
+                            <img src="{{ vich_uploader_asset(enPresentation, 'imageFile') }}" alt="{{ enPresentation.titre }}" title="{{ enPresentation.titre }}"  class="card-img-top img-fluid"/>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ enPresentation.titre }}</h5>
+                                <p class="card-text">{{ enPresentation.resume|raw }}</p>
+                                <!--<a href="#" class="btn btn-outline-danger">Apperçu</a>-->
+                                <a href="{{ path('backend_enpresentation_show', {'slug': enPresentation.slug}) }}" class="btn btn-outline-primary">&raquo; read more</a>
+                                {% if (enPresentation.statut) %}
+                                    <a href="#" class="btn btn-success" title="Actif"><i class="fa fa-check-square-o"></i> </a>
+                                {% else %}
+                                    <a href="#" class="btn btn-danger" title="Desactivé"><i class="fa fa-chain-broken"></i> </a>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Published on {{ enPresentation.publieLe|date('d-m-Y H:i:s') }} by {{ enPresentation.publiePar }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </main>
+{% endblock %}
