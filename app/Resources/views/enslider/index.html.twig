@@ -1,0 +1,51 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Sliders list{% endblock %}
+
+{% block body %}
+    <main class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0"> Slider management
+                <small></small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
+                <li class="breadcrumb-item active">Sliders list</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+
+
+            <div class="row mt-5 mb-3">
+                <div class="col-md-12 text-right">
+                    <a href="{{ path('backend_enslider_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Add new slider</a>
+                </div>
+                <br>
+            </div>
+
+            <div class="card-deck">
+                {% for enSlider in enSliders %}
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card mb-4">
+                            <img src="{{ vich_uploader_asset(enSlider, 'imageFile') }}" alt="{{ enSlider.titre }}" title="{{ enSlider.titre }}"  class="card-img-top img-fluid"/>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ enSlider.titre }}</h5>
+                                <a href="{{ path('backend_enslider_show', {'slug': enSlider.slug}) }}" class="btn btn-outline-primary">View slide</a>
+                                {% if (enSlider.statut) %}
+                                    <a href="#" class="btn btn-success" title="Enabled"><i class="fa fa-check-square-o"></i> </a>
+                                {% else %}
+                                    <a href="#" class="btn btn-danger" title="Desenabled"><i class="fa fa-chain-broken"></i> </a>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Published on {{ enSlider.publieLe|date('d-m-Y H:i:s') }} by {{ enSlider.publiePar }}</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

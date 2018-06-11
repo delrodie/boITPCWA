@@ -1,0 +1,48 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}{{ enSlider.titre }}{% endblock %}
+
+{% block body %}
+    <main class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0"> Slidres management
+                <small></small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="default-color">Home</a></li>
+                <li class="breadcrumb-item active">slider</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+
+
+            <div class="row mt-5 mb-3">
+                <div class="col-md-12 ">
+                    <h5 class=" ">{{ enSlider.titre }}</h5>
+                    <p>{{ enSlider.description }}</p>
+                </div>
+            </div>
+
+            <div class="card-deck">
+                <div class="card mb-9">
+                    <img src="{{ vich_uploader_asset(enSlider, 'imageFile') }}" alt="{{ enSlider.titre }}" title="{{ enSlider.titre }}"  class="card-img-top img-fluid"/>
+                    <div class="card-body">
+                        <a href="{{ path('backend_enslider_edit', {'slug': enSlider.slug}) }}" class="btn btn-outline-danger"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{{ path('backend_enslider_index') }}" class="btn btn-outline-secondary"><i class="fa fa-list"></i> Sliders list</a>
+                        <div class="form-group row">
+                            <div class="col-sm-3 col-sm-offset-8 ml-auto">
+                                {{ form_start(delete_form, {'attr': {'onsubmit': "return confirm('Are you sure you really want remove this slider?');"}}) }}
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}
+
+
