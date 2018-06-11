@@ -111,7 +111,7 @@ class PhotoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('backend_photo_edit', array('id' => $photo->getId()));
+            return $this->redirectToRoute('backend_photo_new', array('article' => $article));
         }
 
         $em = $this->getDoctrine()->getManager();

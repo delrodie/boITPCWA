@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Frressource</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ frRessource.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ frRessource.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ frRessource.description }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if frRessource.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ frRessource.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Imagesize</th>
+                <td>{{ frRessource.imageSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if frRessource.updatedAt %}{{ frRessource.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Brochurename</th>
+                <td>{{ frRessource.brochureName }}</td>
+            </tr>
+            <tr>
+                <th>Brochuresize</th>
+                <td>{{ frRessource.brochureSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatebrochuredat</th>
+                <td>{% if frRessource.updatebrochuredAt %}{{ frRessource.updatebrochuredAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ frRessource.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ frRessource.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ frRessource.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ frRessource.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ frRessource.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_frressource_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_frressource_edit', { 'id': frRessource.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
