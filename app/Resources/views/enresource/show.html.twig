@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Enresource</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ enResource.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ enResource.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ enResource.description }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if enResource.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ enResource.tags }}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ enResource.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Imagesize</th>
+                <td>{{ enResource.imageSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if enResource.updatedAt %}{{ enResource.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Brochurename</th>
+                <td>{{ enResource.brochureName }}</td>
+            </tr>
+            <tr>
+                <th>Brochuresize</th>
+                <td>{{ enResource.brochureSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatebrochuredat</th>
+                <td>{% if enResource.updatebrochuredAt %}{{ enResource.updatebrochuredAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ enResource.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ enResource.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ enResource.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ enResource.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ enResource.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('backend_enresource_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('backend_enresource_edit', { 'id': enResource.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

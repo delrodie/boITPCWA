@@ -1,0 +1,73 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Resources list{% endblock %}
+
+{% block body %}
+    <main class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0"> Resource management
+                <small></small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('backend') }}" class="default-color">Home</a></li>
+                <li class="breadcrumb-item active">Resource list</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+
+
+            <div class="row mt-5 mb-3">
+                <div class="col-md-12 text-right">
+                    <a href="{{ path('backend_enresource_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Create a new resource</a>
+                </div>
+                <br>
+            </div>
+
+            <div class="card-body">
+                <ul class="list-unstyled search-results">
+                    {% for enResource in enResources %}
+                        <li>
+                            <div class="title">
+                                <h6><a href="#">{{ enResource.titre }}</a></h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{ vich_uploader_asset(enResource, 'imageFile') }}" alt="{{ enResource.titre }}" title="{{ enResource.titre }}"  class="img-fluid"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <p>{{ enResource.description }} </p>
+                                    <p>
+                                        {% for tag in enResource.tags|split(',') %}
+                                            <a href="#" class="btn-sm btn-outline-secondary">#{{ tag }}</a>
+                                        {% endfor %}
+                                    </p>
+                                    <p class="text-right">
+                                        <a href="{{ path('backend_enresource_edit', {'slug': enResource.slug}) }}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+                                    <a href="{{ asset('/uploads/en/resources/brochures/'~ enResource.brochureName) }}" class="btn btn-outline-primary" target="_blank">
+                                        <i class="fa fa-download"></i> download
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!--<nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-custom">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>-->
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

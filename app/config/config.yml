@@ -217,6 +217,24 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
+        enresource_brochure:
+            uri_prefix:         /uploads/en/resources/brochures
+            upload_destination: '%kernel.root_dir%/../web/uploads/en/resources/brochures'
+            namer: vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        enresource_image:
+            uri_prefix:         /uploads/en/resources/pictures
+            upload_destination: '%kernel.root_dir%/../web/uploads/en/resources/pictures'
+            namer: vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
 liip_imagine:
     resolvers:
         default:
