@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -35,7 +36,12 @@ class UserType extends AbstractType
               )
         ))
             //->add('emailCanonical')
-            ->add('enabled')
+            ->add('enabled', CheckboxType::class, array(
+                'attr'  => array(
+                    'class' => 'custom-control-input'
+                ),
+                'required' => false,
+            ))
             //->add('salt')
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
@@ -49,10 +55,6 @@ class UserType extends AbstractType
               'choices' => array(
                 'UTILISATEUR '  => 'ROLE_USER',
                 'ADMINISTRATEUR '  => 'ROLE_ADMIN',
-              ),
-              'attr'  => array(
-                  'class' => 'form-control',
-                  'autocomplete'  => 'off'
               ),
               'multiple'  => true,
               'expanded'  => true

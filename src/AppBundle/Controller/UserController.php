@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $users = $em->getRepository('AppBundle:User')->findUser();
 
         return $this->render('user/index.html.twig', array(
             'users' => $users,
@@ -49,7 +49,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('admin_user_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_user_index');
         }
 
         return $this->render('user/new.html.twig', array(
@@ -94,7 +94,7 @@ class UserController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_user_index');
         }
 
         return $this->render('user/edit.html.twig', array(

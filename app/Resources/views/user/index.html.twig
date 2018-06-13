@@ -1,63 +1,76 @@
-{% extends 'base.html.twig' %}
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <div class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0">
+                Gestion des utilisateurs
+                <small> </small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('backend') }}" class="default-color">Accueil</a></li>
+                <li class="breadcrumb-item active">Liste des utilisateurs</li>
+            </ol>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Usernamecanonical</th>
-                <th>Email</th>
-                <th>Emailcanonical</th>
-                <th>Enabled</th>
-                <th>Salt</th>
-                <th>Password</th>
-                <th>Lastlogin</th>
-                <th>Confirmationtoken</th>
-                <th>Passwordrequestedat</th>
-                <th>Roles</th>
-                <th>Logincount</th>
-                <th>Firstlogin</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
-                <td>{{ user.usernameCanonical }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.emailCanonical }}</td>
-                <td>{% if user.enabled %}Yes{% else %}No{% endif %}</td>
-                <td>{{ user.salt }}</td>
-                <td>{{ user.password }}</td>
-                <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ user.confirmationToken }}</td>
-                <td>{% if user.passwordRequestedAt %}{{ user.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if user.roles %}{{ user.roles|join(', ') }}{% endif %}</td>
-                <td>{{ user.loginCount }}</td>
-                <td>{% if user.firstLogin %}{{ user.firstLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ user.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="{{ path('admin_user_new') }}" class="btn  btn-light"><i class="fa fa-plus"></i> Ajouter un nouvel utilisateur</a>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <div class="card card-shadow mb-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Liste des utilisateurs
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#ID</th>
+                                    <th scope="col" class="text-center">Utilisateurs</th>
+                                    <th scope="col" class="text-center">Emails</th>
+                                    <th scope="col" class="text-center">Connexions</th>
+                                    <th scope="col" class="text-center">Premières</th>
+                                    <th scope="col" class="text-center">Dernières</th>
+                                    <th scope="col" class="text-center">Status</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <th scope="col" class="text-right">{{ loop.index }}</th>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td class="text-center">{{ user.logincount }}</td>
+                                        <td>{{ user.firstlogin|date('d-m-Y H:m:i') }}</td>
+                                        <td>{{ user.lastlogin|date('d-m-Y H:m:i') }}</td>
+                                        <td class="text-center">
+                                            {% if (user.enabled) %}
+                                                <span class="badge badge-pill badge-success">Actif</span>
+                                            {% else %}
+                                                <span class="badge badge-pill badge-danger">Désactivé</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}"><i class="fa fa-edit"></i></a> |
+                                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}" onclick="return(confirm('Do you really want to delete  {{ user.username }} ?'));"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_new') }}">Create a new user</a>
-        </li>
-    </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
