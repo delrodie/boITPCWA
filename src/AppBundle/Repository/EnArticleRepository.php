@@ -22,4 +22,43 @@ class EnArticleRepository extends \Doctrine\ORM\EntityRepository
                     ->getQuery()->getResult()
             ;
     }
+
+    /**
+     * Recherche de l'article selon son ID
+     */
+    public function findArticle($article)
+    {
+        return $this->createQueryBuilder('a')
+                    ->where('a.id = :id')
+                    ->setParameter('id', $article)
+            ;
+    }
+
+    /**
+     * Liste des articles non traduits
+     */
+    public function findEnArticle($article)
+    {
+        //die($article);
+        if ($article === 'null'){
+            return $this->createQueryBuilder('a')
+                        ->where('a.traduction IS NULL')
+                        ->orWhere('a.traduction = 0')
+                        ;
+        } else{
+            return $this->findArticle($article);
+        }
+    }
+
+    /**
+     * Liste des articles pas encore traduits
+     */
+    public function findEnArticleNonTraduit($article)
+    {
+        return $this->findArticle($article)
+                    ->orWhere('a.traduction IS NULL')
+                    ->orWhere('a.traduction = 0')
+            ;
+    }
+
 }

@@ -35,7 +35,7 @@
                         <a href="{{ path('backend_enarticle_edit', {'slug': enArticle.slug}) }}" class="btn btn-outline-danger"><i class="fa fa-edit"></i> Edit</a>
                         <a href="#" class="btn btn-outline-primary"><i class="fa fa-eye"></i> Visitor overview</a>
                         <a href="{{ path('backend_enarticle_index') }}" class="btn btn-outline-secondary"><i class="fa fa-list"></i> News' list</a>
-                        <a href="{{ path('backend_photo_new', {'article': enArticle.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i> Ajouter une galerie photo</a>
+                        <a href="{{ path('backend_traduction_new', {'fr': 'null', 'en': enArticle.id}) }}" class="btn btn-warning"><i class="fa fa-chain"></i> To link french version</a>
                         <div class="form-group row">
                             <div class="col-sm-3 col-sm-offset-8 ml-auto">
                                 {{ form_start(delete_form, {'attr': {'onsubmit': "return confirm('Do you really want to delete this new?');"}}) }}

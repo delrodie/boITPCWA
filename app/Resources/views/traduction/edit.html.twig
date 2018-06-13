@@ -1,0 +1,79 @@
+{% extends 'backend_layout.html.twig' %}
+
+{% block title %}Liaison des articles français et anglais{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="page-title">
+            <h4 class="mb-0">
+                Gestion des traduction
+                <small> </small>
+            </h4>
+            <ol class="breadcrumb mb-0 pl-0 pt-1 pb-0">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="default-color">Accueil</a></li>
+                <li class="breadcrumb-item active">Liaison des articles français et anglais</li>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="#" class="btn  btn-light"><i class="fa fa-list"></i> </a>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <div class="card card-shadow mb-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Liaison des articles français et anglais
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(edit_form, {'attr': {'class': 'right-text-label-form', 'id':'signupForm'}}) }}
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label" for="Partenaire">Français</label>
+                                <div class="col-sm-8 select2-container">
+                                    {{ form_widget(edit_form.francais) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label" for="Partenaire">Anglais</label>
+                                <div class="col-sm-8 select2-container">
+                                    {{ form_widget(edit_form.anglais) }}
+                                </div>
+                            </div>
+                            {{ form_rest(edit_form) }}
+                            <div class="form-group row">
+                                <div class="col-sm-5 ml-auto">
+                                    <a href="{{ path('backend_frarticle_index') }}" class="btn btn-outline-primary">Annuler</a>
+                                    <button class="btn btn-primary" name="signup">Lier</button>
+                                </div>
+                            </div>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('backend/vendor/select2/css/select2.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('backend/vendor/select2/js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#appbundle_publicite_typepublicite").select2();
+            $(".select-typepublicite").select2();
+            $(".select-zone").select2();
+            $(".select-partenaire").select2();
+            $("tag-input").tagsinput();
+        })
+    </script>
+{% endblock %}

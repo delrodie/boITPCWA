@@ -36,8 +36,9 @@
                         <a href="#" class="btn btn-outline-primary"><i class="fa fa-eye"></i> Aperçu visiteur</a>
                         <a href="{{ path('backend_frarticle_index') }}" class="btn btn-outline-secondary"><i class="fa fa-list"></i> Liste des articles</a>
                         <a href="{{ path('backend_photo_new', {'article': frArticle.id}) }}" class="btn btn-primary"><i class="fa fa-plus"></i> Ajouter une galerie photo</a>
+                        <a href="{{ path('backend_traduction_new', {'fr': frArticle.id, 'en': 'null'}) }}" class="btn btn-warning"><i class="fa fa-chain"></i> Lier la version anglaise</a>
                         <div class="form-group row">
-                            <div class="col-sm-3 col-sm-offset-8 ml-auto">
+                            <div class="col-sm-3 col-sm-offset-8 ml-auto mt-5">
                                 {{ form_start(delete_form, {'attr': {'onsubmit': "return confirm('Etes-vous sûr de vouloir vraiment supprimer cet article?');"}}) }}
                                 <input type="submit" value="Supprimer" class="btn btn-danger">
                                 {{ form_end(delete_form) }}

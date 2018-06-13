@@ -33,6 +33,29 @@ class FrArticleRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
+    public function findFrArticle($article)
+    {
+        if ($article === 'null'){
+            return $this->createQueryBuilder('a')
+                        ->where('a.traduction IS NULL')
+                        ->orWhere('a.traduction = 0')
+                ;
+        } else{
+            return $this->findArticle($article);
+        }
+    }
+
+    /**
+     * Recherche des artciles pas encore traduits
+     */
+    public function findFrArticleNonTraduit($article)
+    {
+        return $this->findArticle($article)
+                    ->orWhere('a.traduction IS NULL')
+                    ->orWhere('a.traduction = 0')
+            ;
+    }
+
     /**
      * Fonction de recherche
      */

@@ -61,6 +61,13 @@ class EnArticle
     private $statut;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="traduction", type="boolean", nullable=true)
+     */
+    private $traduction;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="enarticle_image", fileNameProperty="imageName", size="imageSize")
@@ -483,5 +490,34 @@ class EnArticle
     public function getModifieLe()
     {
         return $this->modifieLe;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitre();
+    }
+
+    /**
+     * Set traduction
+     *
+     * @param boolean $traduction
+     *
+     * @return EnArticle
+     */
+    public function setTraduction($traduction)
+    {
+        $this->traduction = $traduction;
+
+        return $this;
+    }
+
+    /**
+     * Get traduction
+     *
+     * @return boolean
+     */
+    public function getTraduction()
+    {
+        return $this->traduction;
     }
 }

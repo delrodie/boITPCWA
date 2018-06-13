@@ -61,6 +61,13 @@ class FrArticle
     private $statut;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="traduction", type="boolean", nullable=true)
+     */
+    private $traduction;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="article")
      */
     private $photos;
@@ -534,5 +541,29 @@ class FrArticle
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    /**
+     * Set traduction
+     *
+     * @param boolean $traduction
+     *
+     * @return FrArticle
+     */
+    public function setTraduction($traduction)
+    {
+        $this->traduction = $traduction;
+
+        return $this;
+    }
+
+    /**
+     * Get traduction
+     *
+     * @return boolean
+     */
+    public function getTraduction()
+    {
+        return $this->traduction;
     }
 }
