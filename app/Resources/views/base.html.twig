@@ -1,13 +1,222 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+<html lang="fr">
+    <html>
+        <head>
+            <meta charset="UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="author" content="themexriver">
+            <title>
+                {% block title %}ITPC West Africa{% endblock %}
+            </title>
+            <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}"/>
+            {% block stylesheets %}
+                <link href="{{ absolute_url(asset('frontend/css/font-awesome.min.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/flaticon.css')) }}" rel="stylesheet">
+
+                <link href="{{ absolute_url(asset('frontend/css/bootstrap.min.css')) }}" rel="stylesheet">
+
+                <link href="{{ absolute_url(asset('frontend/css/animate.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/owl.carousel.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/owl.theme.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/slick.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/slick-theme.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/owl.transitions.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/jquery.fancybox.css')) }}" rel="stylesheet">
+                <link href="{{ absolute_url(asset('frontend/css/bootstrap-select.css')) }}" rel="stylesheet">
+
+                <link href="{{ absolute_url(asset('frontend/css/style.css')) }}" rel="stylesheet">
+
+                <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media
+                queries -->
+                <!--[if lt IE 9]> <script
+                src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script> <script
+                src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]-->
+            {% endblock %}
+        </head>
+        <body>
+
+            <div class="page-wrapper">
+
+                <div class="preloader"> </div>
+
+                <header id="header" class="site-header header-style-1">
+                    <div class="topbar">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    <ul class="contact-info">
+                                        <li><i class="fa fa-phone-square"></i> Phone: +225 22 52 99 89</li>
+                                    </ul>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <div class="language">
+                                        <span><i class="fa fa-globe"></i> Lang:</span>
+                                        <a href="en_index.html" title="Anglais"><img src="{{ absolute_url(asset('frontend/images/drapeau-en.png')) }}" width="20"></a>
+                                        <a href="{{ absolute_url(path('francais_index')) }}" title="Français"><img src="{{ absolute_url(asset('frontend/images/drapeau-fr.png')) }}" width="20"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end container -->
+                    </div> <!-- end topbar -->
+                    <nav class="navigation navbar navbar-default">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="open-btn">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a href="{{ absolute_url(path('homepage')) }}" class="navbar-brand"><img src="{{ absolute_url(asset('frontend/images/logo.png')) }}" alt></a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
+                                <button class="close-navbar"><i class="fa fa-close"></i></button>
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ absolute_url(path('homepage')) }}">Accueil</a></li>
+                                    <li><a href="actualite.html">Actualités</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Présentation</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="page.html">Qui sommes-nous?</a></li>
+                                            <li><a href="page.html">Vision, mision</a></li>
+                                            <li><a href="page.html">Axe d'intervention</a></li>
+                                            <li><a href="equipe.html">Notre équipe </a></li>
+                                            <li><a href="page.html">Zone d'intervention </a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="page.html">Campagne</a></li>
+                                    <li><a href="#">Ressources</a></li>
+                                    <li><a href="galerie.html">Galerie</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div><!-- end of nav-collapse -->
+                            <div class="search-social">
+                                <div class="header-search-area">
+                                    <div class="header-search-form">
+                                        <form class="form">
+                                            <div>
+                                                <input type="text" class="form-control" placeholder="Search here">
+                                            </div>
+                                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <button class="btn open-btn"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="social">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- end of container -->
+                    </nav>
+                </header>
+
+                 {% block body %}{% endblock %}
+
+                <footer class="site-footer">
+                    <div class="upper-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-md-4 col-sm-6">
+                                    <div class="widget about-widget">
+                                        <div class="footer-logo"><img src="{{ absolute_url(asset('frontend/images/logo.png')) }}" alt width=""></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                                        <ul class="contact-info">
+                                            <li><i class="fa fa-phone"></i> +225 22 52 99 89  </li>
+                                            <li><i class="fa fa-envelope"></i> infos@itpcwa.org</li>
+                                            <li><i class="fa fa-home"></i> Cocody Angre 7è Tranche vallée, Abidjan-Côte d'Ivoire</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col col-md-2 col-sm-6">
+                                    <div class="widget support-widget">
+                                        <h3>Rubriques</h3>
+                                        <ul>
+                                            <li><a href="#">Actualités</a></li>
+                                            <li><a href="#">Campagne</a></li>
+                                            <li><a href="#">Ressources</a></li>
+                                            <li><a href="#">Galerie</a></li>
+                                            <li><a href="#">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col col-md-3 col-sm-6">
+                                    <div class="widget support-widget">
+                                        <h3>Présentation</h3>
+                                        <ul>
+                                            <li><a href="#">qui sommes-nous?</a></li>
+                                            <li><a href="#">Mission, vision</a></li>
+                                            <li><a href="#">Axe d'intervention</a></li>
+                                            <li><a href="#">Notre équipe</a></li>
+                                            <li><a href="#">Zone d'intervention</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col col-md-3 col-sm-6">
+                                    <div class="widget twitter-feed-widget">
+                                        <h3>Twitter Feed</h3>
+                                        <ul>
+                                            <li>
+                                                <div class="text">
+                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Ed quia con sequuntur magni dolores.</p>
+                                                </div>
+                                                <div class="info-box">
+                                                    <i class="fa fa-twitter"></i>
+                                                    <strong><a href="#">@itpcwa</a></strong>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="text">
+                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Ed quia con sequuntur magni dolores.</p>
+                                                </div>
+                                                <div class="info-box">
+                                                    <i class="fa fa-twitter"></i>
+                                                    <strong><a href="#">@itpcwa</a></strong>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end upper-footer -->
+                    <div class="copyright-info">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-xs-6">
+                                    <div class="copyright-area">
+                                        <p>2018 &copy; ITPC West Africa </p>
+                                    </div>
+                                </div>
+                                <div class="col col-xs-6">
+                                    <div class="footer-social">
+                                        <span>Suivez-nous: </span>
+                                        <ul class="social-links">
+                                            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>        
+            </div>            
+           
+            
+            {% block javascripts %}     
+            <script src="{{ absolute_url(asset('frontend/js/jquery.min.js')) }}"></script>
+            <script src="{{ absolute_url(asset('frontend/js/bootstrap.min.js')) }}"></script>
+            <script src="{{ absolute_url(asset('frontend/js/jquery-plugin-collection.js')) }}"></script>
+            <script src="{{ absolute_url(asset('frontend/js/script.js')) }}"></script>
+            {% endblock %}
+        </body>
+    </html>

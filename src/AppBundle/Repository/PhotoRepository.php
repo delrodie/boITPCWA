@@ -24,4 +24,19 @@ class PhotoRepository extends \Doctrine\ORM\EntityRepository
                     ->getQuery()->getResult();
             ;
     }
+
+    /**
+     * Liste des dernières photos
+     */
+    public function findPhoto($limit, $offset)
+    {
+        return $this->createQueryBuilder('p')
+                    ->addSelect('a')
+                    ->leftJoin('p.article', 'a')
+                    ->orderBy('p.id', 'DESC')
+                    ->setFirstResult($offset)
+                    ->setMaxResults($limit)
+                    ->getQuery()->getResult()
+        ;
+    }
 }

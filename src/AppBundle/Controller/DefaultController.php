@@ -15,7 +15,7 @@ class DefaultController extends Controller
     {
         $locale = $request->getLocale();
         if ($locale === "fr"){
-            return $this->render('default/index.html.twig');
+            return $this->redirectToRoute('francais_index');
         }else{
             return $this->render('default/index_en.html.twig');
         }
