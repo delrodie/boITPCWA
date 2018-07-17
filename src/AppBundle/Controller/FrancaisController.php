@@ -47,4 +47,18 @@ class FrancaisController extends Controller
             'partenaires'   => $partenaires,
         ]);   
     }
+
+    /**
+     * Menu droit de la page secondaire
+     * 
+     * @Route("/menu-droit", name="francais_menu_droit")
+     */
+    public function menu()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $publications = $em->getRepository('AppBundle:FrRessource')->findBy(array('statut'=>1), array('id'=>'DESC'),1,0);
+        return $this->render('francais/menu.html.twig',[
+            'publications'  => $publications,
+        ]);
+    }
 }
