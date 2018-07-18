@@ -24,4 +24,17 @@ class FrPresentationRepository extends \Doctrine\ORM\EntityRepository
                     ->getQuery()->getResult()
         ;
     }
+
+    /**
+     * L'article concerne par le type
+     */
+    public function findPresentationByType($type)
+    {
+        return $this->createQueryBuilder('p')
+                    ->join('p.type', 't')
+                    ->where('t.slug LIKE :slug')
+                    ->setParameter('slug',  '%'.$type.'%')
+                    ->getQuery()->getOneOrNullResult()
+        ;
+    }
 }

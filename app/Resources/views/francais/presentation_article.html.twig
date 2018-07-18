@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ presentation.titre }}
+{% endblock %}
+
+{% block body %}
+
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="{{ absolute_url(path('francais_presentation'))}}">Qui sommes-nous?</a>
+                        </li>
+                        <li>{{ presentation.titre }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-with-sidebar-section blog-single-content section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="news-grids col col-lg-8 col-md-8">
+                    <div class="post">
+                        <div class="post-title-meta">
+                            <h2>{{ presentation.titre }}
+                            </h2>
+                            <img
+                                src="{{ absolute_url(asset('/uploads/fr/presentations/'~ presentation.imageName ))}}"
+                                alt="{{ presentation.titre }}"
+                                class="img-responsive"
+                                style="margin-bottom: 20px">
+                            <ul class="meta-info">
+                                <li>
+                                    <a href="#">Par:
+                                        {{ presentation.publiePar|title }}</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ presentation.publieLe|date('d M Y')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="post-body">
+                            <p class="text-justify">{{ presentation.contenu|raw }}</p>
+
+                        </div>
+                    </div>
+                    <!-- end post -->
+
+                    <div class="tag-share">
+                        <div>
+                            <span>Mots clés:
+                            </span>
+                            <ul class="tag">
+                                {% for tag in presentation.tags | split(',') %}
+                                    <li>
+                                        <a href="#">{{ tag }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div>
+                            <span>Partage:</span>
+                            <ul class="share">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end tag-share -->
+
+                    <div class="comments">
+                        <div
+                            class="fb-comments"
+                            data-href="http://itpcglobal.org/"
+                            data-width="750"
+                            data-numposts="5"></div>
+
+                    </div>
+                    <!-- end comments -->
+                </div>
+                <!-- end blog-content -->
+
+                <div class="blog-sidebar col col-lg-offset-1 col-lg-3 col-md-4 col-sm-5">
+                    {{ render(url('francais_menu_droit'))}}
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+
+{% endblock %}
