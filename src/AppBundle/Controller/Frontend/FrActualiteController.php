@@ -23,6 +23,22 @@ class FrActualiteController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/{slug}", name="francais_actualite_article")
+     */
+    public function articleAction($slug)
+    {
+        $actualite = $this->actualiteRepository()->findOneBy(array('slug'=> $slug));
+        $photo = $this->getDoctrine()->getManager()
+                    ->getRepository('AppBundle:Photo')
+                    ->findOneBy(array('article'=>$actualite->getId()));
+
+        return $this->render('francais/actualite_article.html.twig',[
+            'actualite'   => $actualite,
+            'photo'   => $photo,
+        ]);
+    }
+
     public function actualiteRepository()
     {
         $em = $this->getDoctrine()->getManager();
