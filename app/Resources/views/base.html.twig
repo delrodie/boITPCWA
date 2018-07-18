@@ -5,10 +5,11 @@
             <meta charset="UTF-8"/>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="author" content="themexriver">
             <title>
                 {% block title %}ITPC West Africa{% endblock %}
             </title>
+            {% block meta %}
+            {% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}"/>
             {% block stylesheets %}
                 <link href="{{ absolute_url(asset('frontend/css/font-awesome.min.css')) }}" rel="stylesheet">
@@ -81,7 +82,7 @@
                                             {{ render(url('francais_presentation'))}}
                                         </ul>
                                     </li>
-                                    <li><a href="page.html">Campagne</a></li>
+                                    {{ render(url('francais_campagne'))}}
                                     <li><a href="#">Ressources</a></li>
                                     <li><a href="galerie.html">Galerie</a></li>
                                     <li><a href="contact.html">Contact</a></li>
@@ -213,6 +214,15 @@
             <script src="{{ absolute_url(asset('frontend/js/bootstrap.min.js')) }}"></script>
             <script src="{{ absolute_url(asset('frontend/js/jquery-plugin-collection.js')) }}"></script>
             <script src="{{ absolute_url(asset('frontend/js/script.js')) }}"></script>
+            
+            <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <script>
             {% endblock %}
         </body>
     </html>

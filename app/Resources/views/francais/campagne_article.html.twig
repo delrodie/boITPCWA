@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ presentation.titre }}
+{% block title %}{{ campagne.titre }}
 {% endblock %}
 
 {% block body %}
@@ -14,9 +14,9 @@
                             <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
                         </li>
                         <li>
-                            <a href="{{ absolute_url(path('francais_presentation'))}}">Qui sommes-nous?</a>
+                            <a href="#">Campagne</a>
                         </li>
-                        <li>{{ presentation.titre }}</li>
+                        <li>{{ campagne.titre }}</li>
                     </ol>
                 </div>
             </div>
@@ -29,27 +29,27 @@
                 <div class="news-grids col col-lg-8 col-md-8">
                     <div class="post">
                         <div class="post-title-meta">
-                            <h2>{{ presentation.titre }}
+                            <h2>{{ campagne.titre }}
                             </h2>
                             <img
-                                src="{{ absolute_url(asset('/uploads/fr/presentations/'~ presentation.imageName ))}}"
-                                alt="{{ presentation.titre }}"
+                                src="{{ absolute_url(asset('/uploads/fr/campagnes/'~ campagne.imageName ))}}"
+                                alt="{{ campagne.titre }}"
                                 class="img-responsive"
                                 style="margin-bottom: 20px">
                             <ul class="meta-info">
                                 <li>
                                     <a href="#">Par:
-                                        {{ presentation.publiePar|title }}</a>
+                                        {{ campagne.publiePar|title }}</a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-clock-o"></i>
-                                        {{ presentation.publieLe|date('d M Y')}}</a>
+                                        {{ campagne.publieLe|date('d M Y')}}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="post-body">
-                            <p class="text-justify">{{ presentation.contenu|raw }}</p>
+                            <p class="text-justify">{{ campagne.contenu|raw }}</p>
 
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             <span>Mots clés:
                             </span>
                             <ul class="tag">
-                                {% for tag in presentation.tags | split(',') %}
+                                {% for tag in campagne.tags | split(',') %}
                                     <li>
                                         <a href="#">{{ tag }}</a>
                                     </li>
@@ -88,7 +88,7 @@
                     <div class="comments">
                         <div
                             class="fb-comments"
-                            data-href="{{ absolute_url(path('homepage'))}}"
+                            data-href="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"
                             data-width="750"
                             data-numposts="5"></div>
 
@@ -108,14 +108,15 @@
 {% endblock %}
 
 
+
 {% block meta %}
     <meta
         name="keywords"
-        content="{% for tag in presentation.tags|split(',') %}{{ tag }}, {% endfor %}"/>
-    <meta name="description" content="{{ presentation.resume|raw }}"/>
+        content="{% for tag in campagne.tags|split(',') %}{{ tag }}, {% endfor %}"/>
+    <meta name="description" content="{{ campagne.resume|raw }}"/>
     <meta name="revisit" content="7 days"/>
     <meta name="revisit-after" content="7 days">
-    <meta name="Author" content="ITPC West Africa, {{ presentation.publiePar|title }}">
+    <meta name="Author" content="ITPC West Africa, {{ campagne.publiePar|title }}">
     <meta name="Copyright" content="www.itpcwa.org">
     <meta name="Content-Language" content="FR">
     <meta name="distribution" content="global"/>
@@ -124,35 +125,35 @@
 
     <link
         rel="canonical"
-        href="{{ absolute_url(path('francais_presentation_article', {'type': presentation.type.slug}))}}"/>
+        href="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"/>
     <meta property="og:locale" content="fr_FR"/>
     <meta property="og:type" content="Item"/>
-    <meta property="og:title" content="{{ presentation.titre }}"/>
-    <meta property="og:description" content="{{ presentation.resume|raw }} "/>
+    <meta property="og:title" content="{{ campagne.titre }}"/>
+    <meta property="og:description" content="{{ campagne.resume|raw }} "/>
     <meta
         property="og:url"
-        content="{{ absolute_url(path('francais_presentation_article', {'type': presentation.type.slug}))}}"/>
+        content="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"/>
     <meta property="og:site_name" content="ASCCI"/>
     <meta property="article:section" content="Item"/>
     <meta
         property="article:published_time"
-        content="{{ presentation.publieLe|date('Y-m-d')}}T{{ presentation.publieLe|date('H:i:s')}}+00:00"/>
+        content="{{ campagne.publieLe|date('Y-m-d')}}T{{ campagne.publieLe|date('H:i:s')}}+00:00"/>
     <meta
         property="article:modified_time"
-        content="{{ presentation.modifieLe|date('Y-m-d')}}T{{ presentation.modifieLe|date('H:i:s')}}+00:00"/>
+        content="{{ campagne.modifieLe|date('Y-m-d')}}T{{ campagne.modifieLe|date('H:i:s')}}+00:00"/>
     <meta
         property="og:updated_time"
-        content="{{ presentation.modifieLe|date('Y-m-d')}}T{{ presentation.modifieLe|date('H:i:s')}}+00:00"/>
+        content="{{ campagne.modifieLe|date('Y-m-d')}}T{{ campagne.modifieLe|date('H:i:s')}}+00:00"/>
     <meta
         property="og:image"
-        content="{{ absolute_url(vich_uploader_asset(presentation, 'imageFile')) }}"/>
+        content="http://itpcwa.org{{ vich_uploader_asset(campagne, 'imageFile') }}"/>
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:description" content="{{ presentation.resume|raw }}"/>
-    <meta name="twitter:title" content="{{ presentation.titre }}"/>
+    <meta name="twitter:description" content="{{ campagne.resume|raw }}"/>
+    <meta name="twitter:title" content="{{ campagne.titre }}"/>
     <meta name="twitter:domain" content="ASCCI"/>
     <meta
         name="twitter:image:src"
-        content="{{ absolute_url(vich_uploader_asset(presentation, 'imageFile')) }}"/>
+        content="http://itpcwa.org{{ vich_uploader_asset(campagne, 'imageFile') }}"/>
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
@@ -161,13 +162,13 @@
                 "@type": "WebPage",
                 "@id": "https://itpcwa.org"
             },
-            "headline": "{{ presentation.titre }}",
+            "headline": "{{ campagne.titre }}",
             "image": [
-                "{{ absolute_url(vich_uploader_asset(presentation, 'imageFile')) }}", "{{ absolute_url(asset('frontend/images/logo.png'))}}"
+                "http://itpcwa.org{{ vich_uploader_asset(campagne, 'imageFile') }}", "http://itpcwa.org/ressources/images/logo2.png"
             ],
-            "datePublished": "{{ presentation.publieLe|date('Y-m-d')}}T{{ presentation.publieLe|date('H:i:s')}}+00" +
+            "datePublished": "{{ campagne.publieLe|date('Y-m-d')}}T{{ campagne.publieLe|date('H:i:s')}}+00" +
                     ":00",
-            "dateModified": "{{ presentation.modifieLe|date('Y-m-d')}}T{{ presentation.modifieLe|date('H:i:s')}}+" +
+            "dateModified": "{{ campagne.modifieLe|date('Y-m-d')}}T{{ campagne.modifieLe|date('H:i:s')}}+" +
                     "00:00",
             "author": {
                 "@type": "Person",
@@ -175,13 +176,13 @@
             },
             "publisher": {
                 "@type": "Organization",
-                "name": "{{ presentation.titre }}",
+                "name": "{{ campagne.titre }}",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "{{ absolute_url(vich_uploader_asset(presentation, 'imageFile')) }}"
+                    "url": "http://itpcwa.org{{ vich_uploader_asset(campagne, 'imageFile') }}"
                 }
             },
-            "description": "{{ presentation.resume|raw }}"
+            "description": "{{ campagne.resume|raw }}"
         }
     </script>
 {% endblock %}

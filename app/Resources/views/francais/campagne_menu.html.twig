@@ -1,0 +1,5 @@
+{% for menu in menus %}
+    <li>
+        <a href="{{ absolute_url(path('francais_campagne_article', {'slug': menu.slug }))}}">Campagne</a>
+    </li>
+{% endfor %}
