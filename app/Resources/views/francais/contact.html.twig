@@ -7,8 +7,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-md-8 col-md-offset-2">
-                        <div class="section-title-s3">
-                            <h2>Nous contacter</h2>
+                        <div class="section-title-s3">     
+                                <h2>Nous contacter</h2>    
                         </div>
                     </div>
                     {% if (app.flashes('notice')) %}
@@ -37,11 +37,12 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title text-center">Oups!! votre message n'a pas être envoyé, veuillez réessayer plutard! </h4>
+                                <h4 class="modal-title text-center">Oups!! votre message n'a pas pu être envoyé, veuillez réessayer plutard! </h4>
+                                
                             </div>
                             <div class="modal-body">
                                 {% for message in app.flashes('erreur') %}
-                                    <div class="flash-notice">
+                                    <div class="flash-erreur">
                                         {{ message }}
                                     </div>
                                 {% endfor %}
@@ -83,9 +84,9 @@
                                 <div class="col col-xs-12">
                                     <textarea class="form-control" name="message" placeholder="Redigez votre message.."></textarea>
                                 </div>
-                                <!--<div class="col col-xs-12">
+                                <div class="col col-xs-12">
                                     <div class="g-recaptcha" data-sitekey="6LeEB2UUAAAAAB6pWOLSxYY8-ftoBnzVCAIcFWjB"></div>
-                                </div>-->
+                                </div>
                                 <div class="col col-xs-12 submit-btn">
 
                                     <button type="submit">Envoyer</button>
@@ -93,10 +94,10 @@
                                         <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
                                     </div>
                                 </div>
-                                <!--<div class="error-handling-messages">
+                                <div class="error-handling-messages">
                                     <div id="success">Merci</div>
                                     <div id="error"> Echec d'envoi, prière reprendre plutard. </div>
-                                </div>-->
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -144,6 +145,6 @@ if ($("#contact-form-s2").length) {
 
         setTimeout(function() {
             $('#overlay').modal('hide');
-        }, 5000);
+        }, 15000);
     </script>
 {% endblock %}

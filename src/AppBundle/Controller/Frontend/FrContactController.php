@@ -37,7 +37,11 @@ class FrContactController extends Controller
         $location = $request->get('location');
         $observation = $request->get('message'); //dump($message);die();
 
-        $message = (new \Swift_Message('Envoi de mail depuis le site internet'))
+        $captcha = $request->get('g-recaptcha-response'); 
+
+        if ($captcha) {
+            if ($this->verificationCaptcha($captcha)) {
+                $message = (new \Swift_Message('Envoi de mail depuis le site internet'))
                     ->setFrom(['noreply@itpcwa.org' => 'ITPC WEST AFRICA'])
                     //->setTo($partenaire)
                     //->setTo(['infos@itpcwa.org', 'atraore@itpcwa.org'])
@@ -55,7 +59,16 @@ class FrContactController extends Controller
                           ]
                         ), 'text/html'
                       )
-        ;
+                ;
+            } else {
+                $this->addFlash('erreur', 'ne sommes desolé votre message n\'a pas pu être envoyé');
+                return $this->redirectToRoute('francais_contact');
+            }            
+        } else {
+            $this->addFlash('erreur', 'Oups!! nous n\'avons pas pu verifier que vous n\'etes pas un robot!');
+            return $this->redirectToRoute('francais_contact');
+        }
+                
 
         if ($mailer->send($message)) {
             $this->addFlash('notice', 'Votre message a bien été envoyé !');
@@ -71,5 +84,25 @@ class FrContactController extends Controller
           ]);*/
 
           return $this->redirectToRoute('francais_contact');
+    }
+
+    /**
+     * Verifcation du captcha
+     */
+    public function verificationCaptcha($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+                "secret"=>"6LeEB2UUAAAAALNT3B_52iX8U5DLI8jtJhxxGEa9","response"=>$recaptcha));
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $data = json_decode($response);     
+        
+        return $data->success;
     }
 }
