@@ -83,8 +83,8 @@
                                         </ul>
                                     </li>
                                     {{ render(url('francais_campagne'))}}
-                                    <li><a href="#">Ressources</a></li>
-                                    <li><a href="galerie.html">Galerie</a></li>
+                                    <li><a href="{{ absolute_url(path('francais_ressources'))}}">Ressources</a></li>
+                                    <li><a href="{{ absolute_url(path('francais_galerie'))}}">Galerie</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </div><!-- end of nav-collapse -->
@@ -93,7 +93,7 @@
                                     <div class="header-search-form">
                                         <form class="form">
                                             <div>
-                                                <input type="text" class="form-control" placeholder="Search here">
+                                                <input type="text" class="form-control" placeholder="Faites votre recherche">
                                             </div>
                                             <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                                         </form>
@@ -101,12 +101,6 @@
                                     <div>
                                         <button class="btn open-btn"><i class="fa fa-search"></i></button>
                                     </div>
-                                </div>
-                                <div class="social">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div><!-- end of container -->
@@ -135,10 +129,10 @@
                                     <div class="widget support-widget">
                                         <h3>Rubriques</h3>
                                         <ul>
-                                            <li><a href="#">Actualités</a></li>
-                                            <li><a href="#">Campagne</a></li>
-                                            <li><a href="#">Ressources</a></li>
-                                            <li><a href="#">Galerie</a></li>
+                                            <li><a href="{{ absolute_url(path('francais_actualites'))}}">Actualités</a></li>
+                                            {{ render(url('francais_campagne'))}}
+                                            <li><a href="{{ absolute_url(path('francais_ressources'))}}">Ressources</a></li>
+                                            <li><a href="{{ absolute_url(path('francais_galerie'))}}">Galerie</a></li>
                                             <li><a href="#">Contact</a></li>
                                         </ul>
                                     </div>
@@ -148,38 +142,13 @@
                                     <div class="widget support-widget">
                                         <h3>Présentation</h3>
                                         <ul>
-                                            <li><a href="#">qui sommes-nous?</a></li>
-                                            <li><a href="#">Mission, vision</a></li>
-                                            <li><a href="#">Axe d'intervention</a></li>
-                                            <li><a href="#">Notre équipe</a></li>
-                                            <li><a href="#">Zone d'intervention</a></li>
-                                        </ul>
+                                            {{ render(url('francais_presentation'))}}
                                     </div>
                                 </div>
 
                                 <div class="col col-md-3 col-sm-6">
                                     <div class="widget twitter-feed-widget">
-                                        <h3>Twitter Feed</h3>
-                                        <ul>
-                                            <li>
-                                                <div class="text">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Ed quia con sequuntur magni dolores.</p>
-                                                </div>
-                                                <div class="info-box">
-                                                    <i class="fa fa-twitter"></i>
-                                                    <strong><a href="#">@itpcwa</a></strong>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="text">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Ed quia con sequuntur magni dolores.</p>
-                                                </div>
-                                                <div class="info-box">
-                                                    <i class="fa fa-twitter"></i>
-                                                    <strong><a href="#">@itpcwa</a></strong>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <a class="twitter-timeline" data-height="400" data-dnt="true" data-link-color="#E81C4F" href="https://twitter.com/ITPCglobal/likes?ref_src=twsrc%5Etfw">Tweets Liked by @ITPCglobal</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +190,8 @@
                 js = d.createElement(s); js.id = id;
                 js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
                 fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-            <script>
+            }(document, 'script', 'facebook-jssdk'));
+            </script>
             {% endblock %}
         </body>
     </html>

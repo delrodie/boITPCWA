@@ -71,14 +71,14 @@
                             <span>Partage:</span>
                             <ul class="share">
                                 <li>
-                                    <a href="#">
+                                    <div class="fb-share-button" data-href="{{ absolute_url(path('francais_presentation_article', {'type': presentation.type.slug}))}}" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('francais_presentation_article', {'type': presentation.type.slug}))}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                                         <i class="fa fa-facebook"></i>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
+                                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-hashtags="itpc, itpc_west_africa" data-show-count="true"><i class="fa fa-twitter"></i></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 </li>
                             </ul>
                         </div>

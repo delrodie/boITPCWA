@@ -1,11 +1,15 @@
 <div class="widget category-widget">
     {% for publication in publications if (publication.imageName) %}
        <a href="#"><img src="{{ absolute_url(asset('/uploads/fr/ressources/illustrations/'~ publication.imageName))}}" alt="{{ publication.titre}}"></a>
-        <div class="text-center">
-            <a href="{{ absolute_url(asset('/uploads/fr/ressources/brochures/'~ publication.brochureName))}}" class="btn btn-danger btn-sm btn-telecharger" target="_blank">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                Télécharger
-            </a>
+        <div class="service-sidebar">
+            <div class="widget brochures-widget">
+                <div class="btns text-center" style="padding-top: 25px; text-align: center">
+                    <a href="{{ absolute_url(asset('/uploads/fr/ressources/brochures/'~ publication.brochureName))}}" target="_blank">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        Télécharger
+                    </a>
+                </div>
+            </div>
         </div> 
     {% endfor %}
 </div>

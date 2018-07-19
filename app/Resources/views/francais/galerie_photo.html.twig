@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ album.titre }}{% endblock %}
+
+{% block body %}
+
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="{{ absolute_url(path('francais_galerie'))}}">Galerie</a>
+                        </li>
+                        <li>{{ album.titre }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12 sortable-gallery">
+                        <div class="gallery-filters projects-list">
+                            <div class="section-title">
+                            <h2>{{ album.titre }}</h2>
+                        </div>
+                        <p class="text-center">
+                            {{ album.titre }}
+                        </p>
+                        </div>
+
+                        <div class="gallery-container projects-grid">
+                           {% for photo in photos %}
+                             <div class="grid">
+                                <div class="inner">
+                                    <div class="img-holder">
+                                        <img src="{{ asset('uploads/Galeries/'~ photo.imageName) | imagine_filter('photo') }}" alt>
+                                    </div>
+                                    <div class="details">
+                                        <div class="details-inner">
+                                            <ul>
+                                                <li><a href="{{ absolute_url(asset('uploads/Galeries/'~ photo.imageName))}}" class="fancybox"><i class="fa fa-search"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                            </ul>
+                                            <h3></h3>
+                                            <p class="cat">{{ photo.article.titre }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+                    <div class="pagination-wrapper">
+                        <ul class="pg-pagination"></ul>
+                    </div>
+            </div> <!-- end container -->
+        </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('frontend/js/pagination.js')) }}"></script>
+    <script>
+        (function (d, s, id) {
+            var js,
+                fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) 
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
+            fjs
+                .parentNode
+                .insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        $(document).ready(function() {
+            pagination(16,'.grid','ul.pg-pagination',2);
+        });
+    </script>
+{% endblock %}
