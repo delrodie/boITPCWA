@@ -86,7 +86,7 @@
                                     {{ render(url('english_presentation'))}}
                                 </ul>
                             </li>
-                            <li><a href="#">Campaign</a></li>
+                            {{ render(url('english_campagne'))}}
                             <li><a href="#">Resources</a></li>
                             <li><a href="#">Gallery</a></li>
                             <li><a href="#">Contact</a></li>
@@ -135,7 +135,7 @@
                                 <h3>Rubriques</h3>
                                 <ul>
                                     <li><a href="{{ absolute_url(path('english_news'))}}">News</a></li>
-                                    <li><a href="#">Campaign</a></li>
+                                    {{ render(url('english_campagne'))}}
                                     <li><a href="#">Resources</a></li>
                                     <li><a href="#">Galerie</a></li>
                                     <li><a href="#">Contact</a></li>

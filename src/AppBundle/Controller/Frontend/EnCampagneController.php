@@ -7,50 +7,50 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("fr/campagne")
+ * @Route("en/campaign")
  */
-class FrCampagneController extends Controller
+class EnCampagneController extends Controller
 {
     /**
      * Liste des type de presentation
      * 
-     * @Route("/", name="francais_campagne")
+     * @Route("/", name="english_campagne")
      */
     public function indexAction()
     {
         $menus = $this->campagneRepository()->findBy(array('statut'=>1),array('id'=>'DESC'),1,0)
         ;
 
-        return $this->render('francais/campagne_menu.html.twig',[
+        return $this->render('english/campagne_menu.html.twig',[
             'menus'=> $menus,
         ]);
     }
 
     /**
-     * @Route("/{slug}", name="francais_campagne_article")
+     * @Route("/{slug}", name="english_campagne_article")
      */
     public function articleAction($slug)
     {
         $campagne = $this->campagneRepository()->findOneBy(array('slug'=>$slug)); 
 
         if (!$campagne) {
-            return $this->render('francais/page_maintenance.html.twig');
+            return $this->render('english/page_maintenance.html.twig');
         }
 
-        $campagneEnglais = $this->getDoctrine()->getManager()
-                                 ->getRepository('AppBundle:EnCampaign')
+        $campagnefrancais = $this->getDoctrine()->getManager()
+                                 ->getRepository('AppBundle:FrCampagne')
                                  ->findBy(array('statut'=>1),array('id'=>'DESC'),1,0)
         ;
         
-        return $this->render('francais/campagne_article.html.twig',[
+        return $this->render('english/campagne_article.html.twig',[
             'campagne'    => $campagne,
-            'campagneEnglais'    => $campagneEnglais,
+            'campagnefrancais'    => $campagnefrancais,
         ]);
     }
 
     public function campagneRepository()
     {
         $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('AppBundle:FrCampagne');
+        return $em->getRepository('AppBundle:EnCampaign');
     }
 }

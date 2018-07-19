@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_en.html.twig' %}
 
 {% block title %}{{ campagne.titre }}
 {% endblock %}
@@ -11,10 +11,10 @@
                 <div class="col col-xs-12">
                     <ol class="breadcrumb">
                         <li>
-                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                            <a href="{{ absolute_url(path('english_index'))}}">Home</a>
                         </li>
                         <li>
-                            <a href="#">Campagne</a>
+                            <a href="#">Campaign</a>
                         </li>
                         <li>{{ campagne.titre }}</li>
                     </ol>
@@ -32,7 +32,7 @@
                             <h2>{{ campagne.titre }}
                             </h2>
                             <img
-                                src="{{ absolute_url(asset('/uploads/fr/campagnes/'~ campagne.imageName ))}}"
+                                src="{{ absolute_url(asset('/uploads/en/campaign/'~ campagne.imageName ))}}"
                                 alt="{{ campagne.titre }}"
                                 class="img-responsive"
                                 style="margin-bottom: 20px">
@@ -57,7 +57,7 @@
 
                     <div class="tag-share">
                         <div>
-                            <span>Mots clés:
+                            <span>Tags:
                             </span>
                             <ul class="tag">
                                 {% for tag in campagne.tags | split(',') %}
@@ -68,11 +68,11 @@
                             </ul>
                         </div>
                         <div>
-                            <span>Partage:</span>
+                            <span>Share:</span>
                             <ul class="share">
                                 <li>
-                                    <div class="fb-share-button" data-href="{{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug}))}}" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug}))}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                    <div class="fb-share-button" data-href="{{ absolute_url(path('english_campagne_article', {'slug': campagne.slug}))}}" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('english_campagne_article', {'slug': campagne.slug}))}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                                         <i class="fa fa-facebook"></i>
                                         </a>
                                     </div>
@@ -88,7 +88,7 @@
                     <div class="comments">
                         <div
                             class="fb-comments"
-                            data-href="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"
+                            data-href="http://itpcwa.org{{ path('english_campagne_article', {'slug': campagne.slug})}}"
                             data-width="750"
                             data-numposts="5"></div>
 
@@ -98,7 +98,7 @@
                 <!-- end blog-content -->
 
                 <div class="blog-sidebar col col-lg-offset-1 col-lg-3 col-md-4 col-sm-5">
-                    {{ render(url('francais_menu_droit'))}}
+                    {{ render(url('english_menu_droit'))}}
                 </div>
             </div>
         </div>
@@ -125,14 +125,14 @@
 
     <link
         rel="canonical"
-        href="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"/>
+        href="http://itpcwa.org{{ path('english_campagne_article', {'slug': campagne.slug})}}"/>
     <meta property="og:locale" content="fr_FR"/>
     <meta property="og:type" content="Item"/>
     <meta property="og:title" content="{{ campagne.titre }}"/>
     <meta property="og:description" content="{{ campagne.resume|raw }} "/>
     <meta
         property="og:url"
-        content="http://itpcwa.org{{ path('francais_campagne_article', {'slug': campagne.slug})}}"/>
+        content="http://itpcwa.org{{ path('english_campagne_article', {'slug': campagne.slug})}}"/>
     <meta property="og:site_name" content="ASCCI"/>
     <meta property="article:section" content="Item"/>
     <meta
@@ -192,13 +192,13 @@
         <span>
             <i class="fa fa-globe"></i>
             Lang:</span>
-        {% for anglais in campagneEnglais %}
-            <a href="{{ absolute_url(path('english_campagne_article', {'slug': anglais.slug }))}}" title="English"><img
+        <a href="{{ absolute_url(path('english_campagne_article', {'slug': campagne.slug }))}}" title="English"><img
             src="{{ absolute_url(asset('frontend/images/drapeau-en.png')) }}"
             width="20"></a>
-        {% endfor %}
-        <a href="{{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug })) }}" title="French"><img
+        {% for campagne in campagnefrancais %}
+            <a href="{{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug })) }}" title="French"><img
             src="{{ absolute_url(asset('frontend/images/drapeau-fr.png')) }}"
             width="20"></a>
+        {% endfor %}
     </div>
 {% endblock %}
