@@ -1,0 +1,200 @@
+{% extends 'base_en.html.twig' %}
+
+{% block body %}
+    <section class="hero hero-style-1 hero-slider-wrapper">
+            <div class="hero-slider">
+                {% for slider in sliders %}
+                  <div class="slide">
+                    <img src="{{ asset('uploads/fr/sliders/'~ slider.imageName) | imagine_filter('slider') }}" alt="{{ slider.titre }}" class="slider-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-md-8 col-sm-9 slide-caption">
+                                <h2>{{ slider.titre }}</h2>
+                                <p>{{ slider.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section-padding about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-5">
+                        <div class="section-title-s2">
+                            <h2>ITPC West Africa</h2>
+                        </div>
+                        <div class="about-details text-justify">
+                            {% for presentation in presentation %}
+                             <p>
+                                <img src="{{ asset('uploads/en/presentations/'~ presentation.imageName) | imagine_filter('presentation_logon') }}" style="float: left" width="">
+                                {{ presentation.resumeintro|raw }}
+                            </p>   
+                            <div class="text-right">
+                                <a href="#" class="lire-suite">Read more</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col col-md-7">
+                        <div class="row">
+                            <div class="col col-md-6">
+                                {% for axe in axes %}
+                                 <div class="img-details-link">
+                                    <div class="details-link">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/en/presentations/'~ axe.imageName) | imagine_filter('presentation_axe') }}" alt>
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                                <div class="service-details text-justify">
+                                    <h3>{{ axe.titre }}</h3>
+                                    <p>{{ axe.resumeintro|raw }}</p>
+                                    <div class="text-right">
+                                        <a href="#" class="lire-suite">Read more</a>
+                                    </div>
+                                </div>   
+                                {% endfor %}
+                            </div>
+                            <div class="col col-md-6">
+                                {% for zone in zones %}
+                                 <div class="img-details-link">
+                                    <div class="details-link">
+                                        <a href="#">
+                                            <img src="{{ asset('uploads/fr/presentations/'~ zone.imageName) | imagine_filter('presentation_axe') }}" alt>
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                                <div class="service-details text-justify">
+                                    <h3>{{ zone.titre }}</h3>
+                                    <p>{{ zone.resumeintro|raw }}</p>
+                                    <div class="text-right">
+                                        <a href="#" class="lire-suite">Read more</a>
+                                    </div>
+                                </div>   
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+
+        <section class="blog-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-8 col-md-offset-2">
+                        <div class="section-title-s3">
+                            <h2>News</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row news-grids">
+                    {% for actualite in actualites %}
+                      <div class="col col-md-4 col-xs-6">
+                        <div class="grid">
+                            <div class="entry-media">
+                                <img src="{{ asset('uploads/en/news/'~ actualite.imageName) | imagine_filter('actualites') }}" alt="{{ actualite.titre }}">
+                            </div>
+                            <div class="entry-body actualite-bloc">
+                                <div class="entry-header actualite-titre">
+                                    <span class="date">{{ actualite.publieLe|date('d M Y')}}</span>
+                                    <h3><a href="{{ absolute_url(path('francais_actualite_article', {'slug': actualite.slug }))}}">{{ actualite.titre }}</a></h3>
+                                </div>
+                                <div class="entry-details actualite-resume">
+                                    <p>{{ actualite.resume|raw }}</p>
+                                </div>
+                                <div class="entry-meta">
+                                    <a href="{{ absolute_url(path('francais_actualite_article', {'slug': actualite.slug }))}}" class="read-more">Read more</a>
+                                    <!--<a href="#" class="comments"><i class="fa fa-eye"></i> 10 vues</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    {% endfor %}
+                </div>
+            </div> <!-- end container -->
+        </section>
+
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="row">
+                    {% for campagne in campagnes %}
+                     <div class="col col-lg-8 col-md-8">
+                        <h2><span>{{ campagne.titre}}</span></h2>
+                        <p class="text-justify" style="color: white">
+                            {{ campagne.resume|raw}}
+                        </p>
+                        <div class="text-right">
+                            <a href="#" class="btn btn-default">voir details</a>
+                        </div>
+                    </div>
+                    <div class="col col-lg-4 col-md-4 text-center">
+                        <a href="#"><img src="{{ absolute_url(asset('uploads/en/campaign/'~ campagne.imageName))}}" alt="{{ campagne.titre}}" width=""></a>
+                    </div>   
+                    {% endfor %}
+                </div>
+            </div> <!-- end contianer -->
+        </section>
+
+        <section class="projects-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="section-title">
+                            <h2>Gallery</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-xs-12 sortable-gallery">
+                        <div class="gallery-container projects-grid">
+                            {% for photo in photos %}
+                             <div class="grid">
+                                <div class="inner">
+                                    <div class="img-holder">
+                                        <img src="{{ asset('uploads/Galeries/'~ photo.imageName) | imagine_filter('photo') }}" alt>
+                                    </div>
+                                    <div class="details">
+                                        <div class="details-inner">
+                                            <ul>
+                                                <li><a href="{{ absolute_url(asset('uploads/Galeries/'~ photo.imageName))}}" class="fancybox"><i class="fa fa-search"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                            </ul>
+                                            <h3></h3>
+                                            <p class="cat">{{ photo.article.titre }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+            </div> <!-- end container -->
+        </section>
+
+
+        <section class="partners-section">
+            <h2 class="hidden">Nos partenaires</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="partners-slider">
+                            {% for partenaire in partenaires %}
+                               <div class="grid">
+                                <img src="{{ asset('uploads/partenaires/'~ partenaire.imageName) | imagine_filter('partenaire') }}" alt="{{ partenaire.nom }}">
+                            </div> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+{% endblock %}
+
