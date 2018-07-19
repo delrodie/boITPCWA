@@ -57,7 +57,7 @@ class EnglishController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $publications = $em->getRepository('AppBundle:FrRessource')->findBy(array('statut'=>1), array('id'=>'DESC'),1,0);
-        return $this->render('francais/menu.html.twig',[
+        return $this->render('english/menu.html.twig',[
             'publications'  => $publications,
         ]);
     }

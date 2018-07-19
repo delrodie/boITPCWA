@@ -79,7 +79,7 @@
                         <button class="close-navbar"><i class="fa fa-close"></i></button>
                         <ul class="nav navbar-nav">
                             <li><a href="{{ absolute_url(path('english_index')) }}">Home</a></li>
-                            <li><a href="#">News</a></li>
+                            <li><a href="{{ absolute_url(path('english_news'))}}">News</a></li>
                             <li class="menu-item-has-children">
                                 <a href="#">About</a>
                                 <ul class="sub-menu">
@@ -110,12 +110,6 @@
                                 <button class="btn open-btn"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
-                        <div class="social">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div><!-- end of container -->
             </nav>
@@ -144,7 +138,7 @@
                             <div class="widget support-widget">
                                 <h3>Rubriques</h3>
                                 <ul>
-                                    <li><a href="#">News</a></li>
+                                    <li><a href="{{ absolute_url(path('english_news'))}}">News</a></li>
                                     <li><a href="#">Campaign</a></li>
                                     <li><a href="#">Resources</a></li>
                                     <li><a href="#">Galerie</a></li>

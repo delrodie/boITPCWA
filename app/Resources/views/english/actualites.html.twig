@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_en.html.twig' %}
 
-{% block title %}Liste des actualités{% endblock %}
+{% block title %}News{% endblock %}
 
 {% block body %}
 
@@ -10,9 +10,9 @@
                 <div class="col col-xs-12">
                     <ol class="breadcrumb">
                         <li>
-                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                            <a href="{{ absolute_url(path('english_index'))}}">Home</a>
                         </li>
-                        <li>Actualités</li>
+                        <li>News</li>
                     </ol>
                 </div>
             </div>
@@ -26,20 +26,20 @@
                     {% for actualite in actualites %}
                       <div class="grid">
                         <div class="entry-media">
-                            <img src="{{ asset('uploads/fr/actualites/'~ actualite.imageName) | imagine_filter('actualites') }}" alt="{{ actualite.titre }}">
+                            <img src="{{ asset('uploads/en/news/'~ actualite.imageName) | imagine_filter('actualites') }}" alt="{{ actualite.titre }}">
                         </div>
                         <div class="entry-body" style="height: 265px; overflow-y: auto;">
                             <div class="entry-header">
                                 <span class="date">{{ actualite.publieLe|date('d M Y')}}</span>
                                 <h3>
-                                    <a href="{{ absolute_url(path('francais_actualite_article', {'slug': actualite.slug }))}}">{{ actualite.titre }}</a>
+                                    <a href="{{ absolute_url(path('english_new_article', {'slug': actualite.slug }))}}">{{ actualite.titre }}</a>
                                 </h3>
                             </div>
                             <div class="entry-details" style="word-break: all; word-wrap: 10px;">
                                 <p class="text-justify">{{ actualite.resume|raw }}</p>
                             </div>
                             <div class="entry-meta">
-                                <a href="{{ absolute_url(path('francais_actualite_article', {'slug': actualite.slug }))}}" class="read-more">Lire la suite</a>
+                                <a href="{{ absolute_url(path('english_new_article', {'slug': actualite.slug }))}}" class="read-more">Read more</a>
                             </div>
                         </div>
                     </div>  
@@ -51,7 +51,7 @@
                 <!-- end blog-content -->
 
                 <div class="blog-sidebar col col-lg-offset-1 col-lg-3 col-md-4 col-sm-5">
-                    {{ render(url('francais_menu_droit'))}}
+                    {{ render(url('english_menu_droit'))}}
                 </div>
             </div>
         </div>

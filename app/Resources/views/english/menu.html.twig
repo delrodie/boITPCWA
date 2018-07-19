@@ -1,0 +1,40 @@
+<div class="widget category-widget">
+    {% for publication in publications if (publication.imageName) %}
+       <a href="#"><img src="{{ absolute_url(asset('/uploads/fr/ressources/illustrations/'~ publication.imageName))}}" alt="{{ publication.titre}}"></a>
+        <div class="service-sidebar">
+            <div class="widget brochures-widget">
+                <div class="btns text-center" style="padding-top: 25px; text-align: center">
+                    <a href="{{ absolute_url(asset('/uploads/fr/ressources/brochures/'~ publication.brochureName))}}" target="_blank">
+                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                        Download
+                    </a>
+                </div>
+            </div>
+        </div> 
+    {% endfor %}
+</div>
+    <div class="widget">
+        <!--<img src="assets/images/blog/img-1.jpg" alt="alt"></div>-->
+        <div class="widget">
+            <div class="facebook">
+
+                <div
+                    class="fb-page"
+                    data-href="https://www.facebook.com/ItpcWestAfrica/"
+                    data-height="700"
+                    data-small-header="false"
+                    data-adapt-container-width="true"
+                    data-hide-cover="false"
+                    data-show-facepile="true"
+                    data-show-posts="true">
+                    <div class="fb-xfbml-parse-ignore">
+                        <blockquote cite="https://www.facebook.com/ItpcWestAfrica/">
+                            <a href="https://www.facebook.com/ItpcWestAfrica/">ITPC West Africa</a>
+                        </blockquote>
+                    </div>
+                </div>
+
+            </div>
+            <div id="fb-root"></div>
+
+        </div>
