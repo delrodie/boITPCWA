@@ -684,55 +684,7 @@
     }
 
     // Contact page form
-    if ($("#contact-form-s2").length) {
-        $("#contact-form-s2").validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-
-                email: {
-                    required: true,
-                    minlength: 2
-                },
-
-                location: "required",
-
-            },
-
-            messages: {
-                name: "Please enter your name",
-                email: "Please enter your email",
-                location: "Please enter your location",
-            },
-
-            submitHandler: function (form) {
-                $.ajax({
-                    type: "POST",
-                    url: "mail-2.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $( "#loader").hide();
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 3000);
-                        form.reset();
-                    },
-                    error: function() {
-                        $( "#loader").hide();
-                        $( "#error").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 3000);
-                    }
-                });
-                return false; // required to block normal submit since you used ajax
-            }
-
-        });
-    }
+    
 
 
     /*==========================================================================

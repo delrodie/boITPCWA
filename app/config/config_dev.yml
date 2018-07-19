@@ -37,8 +37,11 @@ monolog:
         #    type: chromephp
         #    level: info
 
-#swiftmailer:
-#    delivery_addresses: ['me@example.com']
+swiftmailer:
+    delivery_addresses: ['webmaster@itpcwa.org']
+    delivery_whitelist:
+      - '/@abengourou\.ci$/'
+      - '/^amoikon@abengourou\.ci$/'
 
 web_profiler:
-    intercept_redirects: false
+    intercept_redirects: true
