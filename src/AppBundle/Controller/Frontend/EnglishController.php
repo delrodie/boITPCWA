@@ -71,7 +71,7 @@ class EnglishController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $presentations = $em->getRepository('AppBundle:EnPresentation')->findPresentation('our', 1, 0);
-        return $this->render('English/footer_presentation.html.twig',[
+        return $this->render('english/footer_presentation.html.twig',[
             'presentations'  => $presentations,
         ]);
     }
