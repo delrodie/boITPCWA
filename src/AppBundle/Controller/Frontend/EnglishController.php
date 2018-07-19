@@ -56,7 +56,7 @@ class EnglishController extends Controller
     public function menu()
     {
         $em = $this->getDoctrine()->getManager();
-        $publications = $em->getRepository('AppBundle:FrRessource')->findBy(array('statut'=>1), array('id'=>'DESC'),1,0);
+        $publications = $em->getRepository('AppBundle:EnResource')->findBy(array('statut'=>1), array('id'=>'DESC'),1,0);
         return $this->render('english/menu.html.twig',[
             'publications'  => $publications,
         ]);

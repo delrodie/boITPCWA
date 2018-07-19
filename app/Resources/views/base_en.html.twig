@@ -88,7 +88,7 @@
                             </li>
                             {{ render(url('english_campagne'))}}
                             <li><a href="{{ absolute_url(path('english_ressources'))}}">Resources</a></li>
-                            <li><a href="#">Gallery</a></li>
+                            <li><a href="{{ absolute_url(path('english_gallery'))}}">Gallery</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </div><!-- end of nav-collapse -->
@@ -136,8 +136,8 @@
                                 <ul>
                                     <li><a href="{{ absolute_url(path('english_news'))}}">News</a></li>
                                     {{ render(url('english_campagne'))}}
-                                    <li><a href="#">Resources</a></li>
-                                    <li><a href="#">Galerie</a></li>
+                                    <li><a href="{{ absolute_url(path('english_ressources'))}}">Resources</a></li>
+                                    <li><a href="{{ absolute_url(path('english_gallery'))}}">Gallery</a></li>
                                     <li><a href="#">Contact</a></li>
                                 </ul>
                             </div>
