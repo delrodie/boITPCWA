@@ -1,0 +1,150 @@
+{% extends 'base_en.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+   <section class="contact-pg-content section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-8 col-md-offset-2">
+                        <div class="section-title-s3">     
+                                <h2>Contact Us</h2>    
+                        </div>
+                    </div>
+                    {% if (app.flashes('notice')) %}
+                    <div class="modal fade" id="overlay">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title text-center">Your message has been sent successfully! </h4>
+                            </div>
+                            <div class="modal-body">
+                                {% for message in app.flashes('notice') %}
+                                    <div class="flash-notice">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if (app.flashes('erreur')) %}
+                    <div class="modal fade" id="overlay">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title text-center">Oops !! your message could not be sent, please try again later! </h4>
+                                
+                            </div>
+                            <div class="modal-body">
+                                {% for message in app.flashes('erreur') %}
+                                    <div class="flash-erreur">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>                
+                <div class="row">
+                    <div class="col col-md-6">
+                        <ul class="contact">
+                            <li><i class="fa fa-home"></i> Abidjan Cocody angre 7è tranche</li>
+                            <li><i class="fa fa-phone"></i> +225 21 25 54 47  </li>
+                            <li><i class="fa fa-envelope"></i> infos@itpcwa.org</li>
+                        </ul>
+                        <ul class="reseaux-sociaux">
+                            <h4>Nous suivre</h4>
+                            <li>
+                                <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/messages/compose?recipient_id=&ref_src=twsrc%5Etfw" class="twitter-dm-button" data-hashtags="itpc, itpc_west_africa" data-screen-name="delrodie" data-show-count="false"><i class="fa fa-twitter-square fa-2x"></i></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>                                
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col col-md-6">
+                        <div class="contact-form"> 
+                            <form action="{{ absolute_url(path('english_contact_mail'))}}" method="post" id="contact-form-s2" class="form row contact-validation-active">
+                                <div class="col col-xs-12">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name... " autocomplete="off">
+                                </div>
+                                <div class="col col-xs-12">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email..." autocomplete="off">
+                                </div>
+                                <div class="col col-xs-12">
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location..." autocomplete="off">
+                                </div>
+                                <div class="col col-xs-12">
+                                    <textarea class="form-control" name="message" placeholder="Write your message..."></textarea>
+                                </div>
+                                <div class="col col-xs-12">
+                                    <div class="g-recaptcha" data-sitekey="6LeEB2UUAAAAAB6pWOLSxYY8-ftoBnzVCAIcFWjB"></div>
+                                </div>
+                                <div class="col col-xs-12 submit-btn">
+
+                                    <button type="submit">Send</button>
+                                    <div id="loader">
+                                        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+                                    </div>
+                                </div>
+                                <div class="error-handling-messages">
+                                    <div id="success">Thanks!</div>
+                                    <div id="error"> Failed to send, please resume later. </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.283928750913!2d-3.9867683857321756!3d5.373603296102307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eca91b170519%3A0x3197bc9906bc8008!2sCommissariat+de+police+du+30+i%C3%A8me+arrondissement!5e0!3m2!1sfr!2sci!4v1528912133979" width="1000" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div> <!-- end container -->
+        </section>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent()}}
+<script>
+if ($("#contact-form-s2").length) {
+        $("#contact-form-s2").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+
+                email: {
+                    required: true,
+                    minlength: 2
+                },
+
+                location: "required",
+
+            },
+
+            messages: {
+                name: "Please enter your name",
+                email: "Please enter your mail",
+                location: "Please enter your location",
+            }
+
+        });
+    }
+</script>
+    <script>
+        $('#overlay').modal('show');
+
+        setTimeout(function() {
+            $('#overlay').modal('hide');
+        }, 15000);
+    </script>
+{% endblock %}
