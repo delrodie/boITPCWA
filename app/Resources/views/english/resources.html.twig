@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_en.html.twig' %}
 
-{% block title %}Liste des ressources
+{% block title %}Resources
 {% endblock %}
 
 {% block body %}
@@ -11,9 +11,9 @@
                 <div class="col col-xs-12">
                     <ol class="breadcrumb">
                         <li>
-                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                            <a href="{{ absolute_url(path('english_index'))}}">Home</a>
                         </li>
-                        <li>Ressources</li>
+                        <li>Resources</li>
                     </ol>
                 </div>
             </div>
@@ -27,13 +27,13 @@
                         {% for ressource in ressources %}
                          <div class="grid">
                             <div class="entry-media">
-                                <img src="{{ asset('uploads/fr/ressources/illustrations/'~ ressource.imageName) | imagine_filter('ressource') }}" alt="{{ ressource.titre }}">
+                                <img src="{{ asset('uploads/en/resources/pictures/'~ ressource.imageName) | imagine_filter('ressource') }}" alt="{{ ressource.titre }}">
                             </div>
                             <div class="entry-body">
                                 <div class="entry-header">
                                     <span class="date">{{ ressource.publieLe|date('d M Y')}}</span>
                                     <h3>
-                                        <a href="{{ absolute_url(asset('/uploads/fr/ressources/brochures/'~ ressource.brochureName))}}" target="_blank" >
+                                        <a href="{{ absolute_url(asset('/uploads/en/resources/brochures/'~ ressource.brochureName))}}" target="_blank" >
                                             {{ ressource.titre }}
                                         </a>
                                     </h3>
@@ -42,8 +42,8 @@
                                     <p>{{ ressource.description }}</p>
                                 </div>
                                 <div class="entry-meta">
-                                    <a href="{{ absolute_url(asset('/uploads/fr/ressources/brochures/'~ ressource.brochureName))}}" target="_blank" class="read-more">
-                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Telecharger le document
+                                    <a href="{{ absolute_url(asset('/uploads/en/resources/brochures/'~ ressource.brochureName))}}" target="_blank" class="read-more">
+                                        <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Download the file
                                     </a>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                 <!-- end blog-content -->
 
                 <div class="blog-sidebar col col-lg-offset-1 col-lg-3 col-md-4 col-sm-5">
-                    {{ render(url('francais_menu_droit'))}}
+                    {{ render(url('english_menu_droit'))}}
                 </div>
             </div>
         </div>
