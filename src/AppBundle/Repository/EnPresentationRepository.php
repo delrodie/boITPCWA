@@ -18,10 +18,26 @@ class EnPresentationRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('p')
                     ->join('p.type', 't')
                     ->where('t.slug LIKE :slug')
+                    ->andWhere('p.statut = 1')
+                    ->andWhere('t.statut = 1')
                     ->setFirstResult($offset)
                     ->setMaxResults($limit)
                     ->setParameter('slug', '%'.$slug.'%')
                     ->getQuery()->getResult()
+        ;
+    }
+
+    /**
+     * L'article concerne par le type
+     */
+    public function findPresentationByType($type)
+    {
+        return $this->createQueryBuilder('p')
+                    ->join('p.type', 't')
+                    ->where('t.slug LIKE :slug')
+                    ->andWhere('p.statut = 1')
+                    ->setParameter('slug',  '%'.$type.'%')
+                    ->getQuery()->getOneOrNullResult()
         ;
     }
 }

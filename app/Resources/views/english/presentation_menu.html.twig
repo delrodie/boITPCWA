@@ -1,0 +1,5 @@
+{% for type in types %}
+    <li>
+        <a href="{{ absolute_url(path('english_presentation_article', {'type': type.slug }))}}">{{ type.libelle }}</a>
+    </li>
+{% endfor %}
