@@ -28,4 +28,18 @@ class DefaultController extends Controller
     {
         return $this->render('default/dashboard.html.twig');
     }
+
+    /**
+     * Rsume presentation pour le footer
+     * 
+     * @Route("/presentation/itpcwa", name="francais_presentation_footer")
+     */
+    public function presentationAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $presentations = $em->getRepository('AppBundle:FrPresentation')->findPresentation('somme', 1, 0);
+        return $this->render('English/footer_presentation.html.twig',[
+            'presentations'  => $presentations,
+        ]);
+    }
 }

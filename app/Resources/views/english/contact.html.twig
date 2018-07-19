@@ -148,3 +148,17 @@ if ($("#contact-form-s2").length) {
         }, 15000);
     </script>
 {% endblock %}
+
+{% block langue %}
+    <div class="language">
+        <span>
+            <i class="fa fa-globe"></i>
+            Lang:</span>
+        <a href="{{ absolute_url(path('english_contact'))}}" title="English"><img
+            src="{{ absolute_url(asset('frontend/images/drapeau-en.png')) }}"
+            width="20"></a>
+        <a href="{{ absolute_url(path('francais_contact')) }}" title="French"><img
+            src="{{ absolute_url(asset('frontend/images/drapeau-fr.png')) }}"
+            width="20"></a>
+    </div>
+{% endblock %}
