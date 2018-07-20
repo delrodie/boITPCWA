@@ -33,11 +33,42 @@ class EnPresentationController extends Controller
      */
     public function articleAction($type)
     {
+        if ($type === 'team') {
+            $typeId = $this->getDoctrine()->getManager()
+                            ->getRepository('AppBundle:EnType')->findOneBy(array('slug'=>$type))->getId()
+            ;
+            $equipes = $this->presentationRepository()->findBy(array('type'=> $typeId)); //dump($equipes);die();
+
+            if (!$equipes) {
+                return $this->render('english/page_maintenance.html.twig');
+            }
+            return $this->render('english/presentation_equipe.html.twig',[
+                'equipes'   => $equipes,
+            ]);
+        }
+
         $presentation = $this->presentationRepository()->findPresentationByType($type); 
 
         if (!$presentation) {
             return $this->render('english/page_maintenance.html.twig');
         }
+        
+        return $this->render('english/presentation_article.html.twig',[
+            'presentation'    => $presentation,
+        ]);
+    }
+
+    /**
+     * @route("/biographie/{slug}", name="english_presentation_equipe")
+     */
+    public function biographieAction($slug)
+    {
+        $presentation = $this->presentationRepository()->findOneBy(array('slug'=>$slug));
+
+        if (!$presentation) {
+            return $this->render('english/page_maintenance.html.twig');
+        }
+
         
         return $this->render('english/presentation_article.html.twig',[
             'presentation'    => $presentation,

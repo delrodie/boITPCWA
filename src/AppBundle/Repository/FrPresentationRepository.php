@@ -33,6 +33,8 @@ class FrPresentationRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('p')
                     ->join('p.type', 't')
                     ->where('t.slug LIKE :slug')
+                    ->setFirstResult(0)
+                    ->setMaxresults(1)
                     ->setParameter('slug',  '%'.$type.'%')
                     ->getQuery()->getOneOrNullResult()
         ;

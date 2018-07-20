@@ -33,11 +33,39 @@ class FrPresentationController extends Controller
      */
     public function articleAction($type)
     {
+        if ($type === 'equipe') {
+            $typeId = $this->getDoctrine()->getManager()
+                            ->getRepository('AppBundle:FrType')->findOneBy(array('slug'=>$type))->getId()
+            ;
+            $equipes = $this->presentationRepository()->findBy(array('type'=> $typeId)); //dump($equipes);die();
+            return $this->render('francais/presentation_equipe.html.twig',[
+                'equipes'   => $equipes,
+            ]);
+        }
+
         $presentation = $this->presentationRepository()->findPresentationByType($type); 
 
         if (!$presentation) {
             return $this->render('francais/page_maintenance.html.twig');
         }
+
+        
+        return $this->render('francais/presentation_article.html.twig',[
+            'presentation'    => $presentation,
+        ]);
+    }
+
+    /**
+     * @route("/biographie/{slug}", name="francais_presentation_equipe")
+     */
+    public function biographieAction($slug)
+    {
+        $presentation = $this->presentationRepository()->findOneBy(array('slug'=>$slug));
+
+        if (!$presentation) {
+            return $this->render('francais/page_maintenance.html.twig');
+        }
+
         
         return $this->render('francais/presentation_article.html.twig',[
             'presentation'    => $presentation,

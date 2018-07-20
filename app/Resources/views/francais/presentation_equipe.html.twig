@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre equipe{% endblock %}
+
+{% block body %}
+
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
+                        </li>
+                        <li>Presentation</li>
+                        <li>Notre equipe</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-pg-section section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="team-grids">
+                            {% for equipe in equipes %}
+                              <div class="grid">
+                                <div class="member-pic">
+                                   <a href="{{ absolute_url(path('francais_presentation_equipe', {'slug': equipe.slug })) }}"> 
+                                    <img src="{{ asset('uploads/fr/presentations/'~ equipe.imageName) | imagine_filter('biographie') }}" alt="{{ equipe.titre }}">
+                                   </a>
+                                </div>
+                                <div class="member-info">
+                                    <h4>{{ equipe.titre }}</h4>
+                                    <span>{{ equipe.tags }}</span>
+                                </div>
+                            </div>  
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+                
+                    <div class="pagination-wrapper">
+                        <ul class="pg-pagination"></ul>
+                    </div>
+            </div> <!-- end container -->
+        </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ absolute_url(asset('frontend/js/pagination.js')) }}"></script>
+    <script>
+        $(document).ready(function() {
+            pagination(9,'.grid','ul.pg-pagination',2);
+        });
+    </script>
+{% endblock %}

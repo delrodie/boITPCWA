@@ -1,18 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Erreur Serveur{% endblock %}
-
+{% block title %}Page non trouvée{% endblock %}
 
 {% block body %}
-<h1 class="page_title">Oups! Erreur serveur</h1>
-
-<div class="page_404">
-	<h3>500</h3>
-	<h4>Nous sommes desolés, nous avons rencontré un problème </h4>
-	<p>Mais si ce problème persiste alors veuillez  </p> <br>
-    <a href="#" class="button btn btn_blue">Contactez la CENACOM</a>
+    <section class="pricing-pg-section pricing-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <div class="pricing-grids">
+                        <div class="grid">
+                            <div class="pricing-header">
+                                <p class="type" style="font-size: 30px">Oups!!
+                                </p>
+                                <h3 style="font-size: 70px">500</h3>
+                                <p class="duration" style="font-size: 18px">Nous sommes desolés, nous avons rencontré un problème</p>
+                            </div>
+                            <div class="" style="font-size: 18px">
+                                <p>Mais si ce problème persiste alors veuillez  </p> <br>
+    							<a href="{{ absolute_url(path('francais_contact'))}}" class="button btn btn_blue">Contactez les administrateur</a>
 	
-</div>
+                                <!--<a href="#" class="theme-btn">S'inscrire à notre Nwesletter</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- end pricing-section -->
 {% endblock %}
-
-{% block accueil %}{% endblock %}
