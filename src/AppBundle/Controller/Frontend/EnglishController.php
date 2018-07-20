@@ -28,7 +28,7 @@ class EnglishController extends Controller
         $partenaireRepository = $em->getRepository('AppBundle:Partenaire');
 
         $sliders = $sliderRepository->findBy(array('statut'=>1), array('id'=>'DESC'));
-        $presentation = $presentationRepository->findPresentation('our', 1, 0); //dump($presentation);die();
+        $presentation = $presentationRepository->findPresentation('who', 1, 0); //dump($presentation);die();
         $axes = $presentationRepository->findPresentation('axis', 1, 0);
         $zones = $presentationRepository->findPresentation('area', 1, 0);
         $actualites = $actualiteRepository->findBy(array('statut'=>1), array('id'=>'DESC'), 3,0);
