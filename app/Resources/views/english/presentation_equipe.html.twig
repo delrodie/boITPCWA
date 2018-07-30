@@ -26,7 +26,7 @@
                     <div class="col col-xs-12">
                         <div class="team-grids">
                             {% for equipe in equipes %}
-                              <div class="grid">
+                              <div class="grid" style="height:425px;">
                                 <div class="member-pic">
                                    <a href="{{ absolute_url(path('english_presentation_equipe', {'slug': equipe.slug })) }}"> 
                                     <img src="{{ asset('uploads/en/presentations/'~ equipe.imageName) | imagine_filter('biographie') }}" alt="{{ equipe.titre }}">
