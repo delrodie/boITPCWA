@@ -133,11 +133,11 @@
                             {{ campagne.resume|raw}}
                         </p>
                         <div class="text-right">
-                            <a href="#" class="btn btn-default">voir details</a>
+                            <a href="{{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug }))}}" class="btn btn-danger">voir details</a>
                         </div>
                     </div>
                     <div class="col col-lg-4 col-md-4 text-center">
-                        <a href="#"><img src="{{ absolute_url(asset('uploads/fr/campagnes/'~ campagne.imageName))}}" alt="{{ campagne.titre}}" width=""></a>
+                        <a href="{{ absolute_url(path('francais_campagne_article', {'slug': campagne.slug }))}}"><img src="{{ absolute_url(asset('uploads/fr/campagnes/'~ campagne.imageName))}}" alt="{{ campagne.titre}}" width=""></a>
                     </div>   
                     {% endfor %}
                 </div>

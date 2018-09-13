@@ -90,7 +90,7 @@ class EnCampaignController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $resume = $utilities->resume($enCampaign->getContenu(), 450, '...', true);
-            $enCampaign->setResume($resume);
+            $enCampaign->setResume($resume); //dump($enCampaign);die();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('backend_encampaign_show', array('slug' => $enCampaign->getSlug()));

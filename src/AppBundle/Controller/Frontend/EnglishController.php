@@ -29,8 +29,8 @@ class EnglishController extends Controller
 
         $sliders = $sliderRepository->findBy(array('statut'=>1), array('id'=>'DESC'));
         $presentation = $presentationRepository->findPresentation('who', 1, 0); //dump($presentation);die();
-        $axes = $presentationRepository->findPresentation('axis', 1, 0);
-        $zones = $presentationRepository->findPresentation('area', 1, 0);
+        $axes = $presentationRepository->findPresentation('axe', 1, 0);
+        $zones = $presentationRepository->findPresentation('zone', 1, 0);
         $actualites = $actualiteRepository->findBy(array('statut'=>1), array('id'=>'DESC'), 3,0);
         $campagnes = $campagneRepository->findBy(array('statut'=>1), array('id'=>'DESC'), 1,0);
         $photos = $galerieRepository->findPhoto(8, 0); //dump($photos);die();
