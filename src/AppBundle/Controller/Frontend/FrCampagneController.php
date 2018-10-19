@@ -18,7 +18,7 @@ class FrCampagneController extends Controller
      */
     public function indexAction()
     {
-        $menus = $this->campagneRepository()->findBy(array('statut'=>1),array('id'=>'DESC'),1,0)
+        $menus = $this->campagneRepository()->findBy(array('statut'=>1))
         ;
 
         return $this->render('francais/campagne_menu.html.twig',[

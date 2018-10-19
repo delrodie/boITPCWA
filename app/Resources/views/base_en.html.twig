@@ -96,7 +96,13 @@
                                     {{ render(url('english_presentation'))}}
                                 </ul>
                             </li>
-                            {{ render(url('english_campagne'))}}
+                            <li class="menu-item-has-children">
+                                <a href="#">Compaigns</a>
+                                <ul class="sub-menu">
+                                    {{ render(url('english_campagne'))}}
+                                </ul>
+                            </li>
+
                             <li><a href="{{ absolute_url(path('english_ressources'))}}">Resources</a></li>
                             <li><a href="{{ absolute_url(path('english_gallery'))}}">Gallery</a></li>
                             <li><a href="{{ absolute_url(path('english_contact'))}}">Contact</a></li>

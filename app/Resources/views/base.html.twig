@@ -94,7 +94,12 @@
                                             {{ render(url('francais_presentation'))}}
                                         </ul>
                                     </li>
-                                    {{ render(url('francais_campagne'))}}
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Campagnes</a>
+                                        <ul class="sub-menu">
+                                            {{ render(url('francais_campagne'))}}
+                                        </ul>
+                                    </li>
                                     <li><a href="{{ absolute_url(path('francais_ressources'))}}">Ressources</a></li>
                                     <li><a href="{{ absolute_url(path('francais_galerie'))}}">Galerie</a></li>
                                     <li><a href="{{ absolute_url(path('francais_contact'))}}">Contact</a></li>
