@@ -47,6 +47,20 @@ class EnPresentationController extends Controller
             ]);
         }
 
+        if ($type === 'organ'){
+            $typeId = $this->getDoctrine()->getManager()
+                            ->getRepository('AppBundle:EnType')->findOneBy(array('slug'=>$type))->getId();
+
+            $organs = $this->presentationRepository()->findBy(array('type'=>$typeId, 'statut'=>1));
+
+            if (!$organs){
+                return $this->render('english/page_maintenance.html.twig');
+            }
+            return $this->render('english/presentation_organ.html.twig',[
+                'organs' => $organs
+            ]);
+        }
+
         $presentation = $this->presentationRepository()->findPresentationByType($type); 
 
         if (!$presentation) {
@@ -72,6 +86,21 @@ class EnPresentationController extends Controller
         
         return $this->render('english/presentation_article.html.twig',[
             'presentation'    => $presentation,
+        ]);
+    }
+
+    /**
+     * @route("/organ/{slug}/", name="english_presentation_organ")
+     */
+    public function organAction($slug)
+    {
+        $presentation = $this->presentationRepository()->findOneBy(array('slug'=>$slug));
+        if (!$presentation){
+            return $this->render('english/page_maintenance.html.twig');
+        }
+
+        return $this->render('english/presentation_article.html.twig',[
+            'presentation' => $presentation
         ]);
     }
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Notre equipe{% endblock %}
+{% block title %}Nos organes{% endblock %}
 
 {% block body %}
 
@@ -13,7 +13,7 @@
                             <a href="{{ absolute_url(path('homepage'))}}">Accueil</a>
                         </li>
                         <li>Presentation</li>
-                        <li>Notre equipe</li>
+                        <li>Nos organes</li>
                     </ol>
                 </div>
             </div>
@@ -25,16 +25,16 @@
                 <div class="row">
                     <div class="col col-xs-12">
                         <div class="team-grids">
-                            {% for equipe in equipes %}
+                            {% for organe in organes %}
                               <div class="grid" style="height:425px;">
                                 <div class="member-pic">
-                                   <a href="{{ absolute_url(path('francais_presentation_equipe', {'slug': equipe.slug })) }}"> 
-                                    <img src="{{ asset('uploads/fr/presentations/'~ equipe.imageName) | imagine_filter('biographie') }}" alt="{{ equipe.titre }}">
+                                   <a href="{{ absolute_url(path('francais_presentation_organe', {'slug': organe.slug })) }}">
+                                    <img src="{{ asset('uploads/fr/presentations/'~ organe.imageName) | imagine_filter('biographie') }}" alt="{{ organe.titre }}">
                                    </a>
                                 </div>
                                 <div class="member-info">
-                                    <h4>{{ equipe.titre }}</h4>
-                                    <!--<span>{{ equipe.tags }}</span>-->
+                                    <h4>{{ organe.titre }}</h4>
+                                    <!--<span>{{ organe.tags }}</span>-->
                                 </div>
                             </div>  
                             {% endfor %}

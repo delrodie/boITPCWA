@@ -33,13 +33,27 @@ class FrPresentationController extends Controller
      */
     public function articleAction($type)
     {
-        if ($type === 'equipe') {
+        if ($type === 'equipe-regionale') {
             $typeId = $this->getDoctrine()->getManager()
                             ->getRepository('AppBundle:FrType')->findOneBy(array('slug'=>$type))->getId()
             ;
             $equipes = $this->presentationRepository()->findBy(array('type'=> $typeId)); //dump($equipes);die();
             return $this->render('francais/presentation_equipe.html.twig',[
                 'equipes'   => $equipes,
+            ]);
+        }
+
+        if ($type === 'nos-organes'){
+            $typeId = $this->getDoctrine()->getManager()
+                            ->getRepository('AppBundle:FrType')->findOneBy(array('slug'=>$type))->getId();
+
+            $organes = $this->presentationRepository()->findBy(array('type'=>$typeId));
+
+            if (!$organes){
+                return $this->render('francais/page_maintenance.html.twig');
+            }
+            return $this->render('francais/presentation_organe.html.twig',[
+                'organes' => $organes
             ]);
         }
 
@@ -69,6 +83,22 @@ class FrPresentationController extends Controller
         
         return $this->render('francais/presentation_article.html.twig',[
             'presentation'    => $presentation,
+        ]);
+    }
+
+    /**
+     * @Route("/nos-organes/{slug}/", name="francais_presentation_organe")
+     */
+    public function organeAction($slug)
+    {
+        $presentation = $this->presentationRepository()->findOneBy(array('slug'=>$slug));
+
+        if (!$presentation){
+            return $this->render('francais/page_maintenance.html.twig');
+        }
+
+        return $this->render('francais/presentation_article.html.twig',[
+            'presentation' => $presentation
         ]);
     }
 
