@@ -35,7 +35,7 @@
                                 {{ bienvenue.resumeintro|raw }}
                             </p>   
                             <div class="text-right">
-                                <a href="#" class="lire-suite">Lire la suite</a>
+                                <a href="{{ absolute_url(path('francais_bienvenue_article', {'slug': bienvenue.slug}))}}" class="lire-suite">Lire la suite</a>
                             </div>
                             {% endfor %}
                         </div>

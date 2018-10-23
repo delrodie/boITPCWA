@@ -27,13 +27,13 @@
                             <h2>ITPC West Africa</h2>
                         </div>
                         <div class="about-details text-justify">
-                            {% for presentation in presentation %}
+                            {% for welcome in welcomes %}
                              <p>
-                                <img src="{{ asset('uploads/en/presentations/'~ presentation.imageName) | imagine_filter('presentation_logon') }}" style="float: left" width="">
-                                {{ presentation.resumeintro|raw }}
+                                <img src="{{ asset('uploads/en/presentations/'~ welcome.imageName) | imagine_filter('presentation_logon') }}" style="float: left; margin-right: 25px; margin-bottom: 10px">
+                                {{ welcome.resumeintro|raw }}
                             </p>   
                             <div class="text-right">
-                                <a href="#" class="lire-suite">Read more</a>
+                                <a href="{{ absolute_url(path('english_welcome_article', {'slug': welcome.slug})) }}" class="lire-suite">Read more</a>
                             </div>
                             {% endfor %}
                         </div>
@@ -42,42 +42,65 @@
                     <div class="col col-md-7">
                         <div class="row">
                             <div class="col col-md-6">
-                                {% for axe in axes %}
+                                {% for presentation in presentation %}
                                  <div class="img-details-link">
                                     <div class="details-link">
                                         <a href="#">
-                                            <img src="{{ asset('uploads/en/presentations/'~ axe.imageName) | imagine_filter('presentation_axe') }}" alt>
+                                            <img src="{{ asset('uploads/en/presentations/'~ presentation.imageName) | imagine_filter('presentation_axe') }}" alt>
                                         </a>
                                     </div>
                                     
                                 </div>
                                 <div class="service-details text-justify">
-                                    <h3>{{ axe.titre }}</h3>
-                                    <p>{{ axe.resumeintro|raw }}</p>
+                                    <h3>{{ presentation.titre }}</h3>
+                                    <p>{{ presentation.resumeintro|raw }}</p>
                                     <div class="text-right">
-                                        <a href="#" class="lire-suite">Read more</a>
+                                        <a href="{{ absolute_url(path('english_presentation_article',{'type': presentation.type.slug})) }}" class="lire-suite">Read more</a>
                                     </div>
                                 </div>   
                                 {% endfor %}
                             </div>
                             <div class="col col-md-6">
-                                {% for zone in zones %}
-                                 <div class="img-details-link">
-                                    <div class="details-link">
-                                        <a href="#">
-                                            <img src="{{ asset('uploads/fr/presentations/'~ zone.imageName) | imagine_filter('presentation_axe') }}" alt>
-                                        </a>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {% for axe in axes %}
+                                            <div class="img-details-link">
+                                                <div class="details-link">
+                                                    <a href="#">
+                                                        <img src="{{ asset('uploads/en/presentations/'~ axe.imageName) | imagine_filter('presentation_axe') }}" alt>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="service-details text-justify">
+                                                <h3>{{ axe.titre }}</h3>
+                                                <div class="text-right">
+                                                    <a href="{{ absolute_url(path('english_presentation_article',{'type': axe.type.slug})) }}" class="lire-suite">Read more</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
                                     </div>
-                                    
+                                    <br>
+                                    <div class="col-md-12">
+                                        {% for zone in zones %}
+                                            <div class="img-details-link">
+                                                <div class="details-link">
+                                                    <a href="#">
+                                                        <img src="{{ asset('uploads/en/presentations/'~ zone.imageName) | imagine_filter('presentation_axe') }}" alt>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="service-details text-justify">
+                                                <h3>{{ zone.titre }}</h3>
+                                                <div class="text-right">
+                                                    <a href="{{ absolute_url(path('english_presentation_article',{'type': zone.type.slug})) }}" class="lire-suite">Read more</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                                <div class="service-details text-justify">
-                                    <h3>{{ zone.titre }}</h3>
-                                    <p>{{ zone.resumeintro|raw }}</p>
-                                    <div class="text-right">
-                                        <a href="#" class="lire-suite">Read more</a>
-                                    </div>
-                                </div>   
-                                {% endfor %}
+
                             </div>
                         </div>
                     </div>

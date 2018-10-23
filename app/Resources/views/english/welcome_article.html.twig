@@ -1,0 +1,204 @@
+{% extends 'base_en.html.twig' %}
+
+{% block title %}{{ welcome.titre }}
+{% endblock %}
+
+{% block body %}
+
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{{ absolute_url(path('english_index'))}}">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Welcome</a>
+                        </li>
+                        <li>{{ welcome.titre }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-with-sidebar-section blog-single-content section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="news-grids col col-lg-8 col-md-8">
+                    <div class="post">
+                        <div class="post-title-meta">
+                            <h2>{{ welcome.titre }}
+                            </h2>
+                            <img
+                                src="{{ absolute_url(asset('/uploads/en/presentations/'~ welcome.imageName ))}}"
+                                alt="{{ welcome.titre }}"
+                                class="img-responsive"
+                                style="margin-bottom: 20px">
+                            <ul class="meta-info">
+                                <li>
+                                    <a href="#">Par:
+                                        {{ welcome.publiePar|title }}</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ welcome.publieLe|date('d M Y')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="post-body">
+                            <p class="text-justify">{{ welcome.contenu|raw }}</p>
+
+                        </div>
+                    </div>
+                    <!-- end post -->
+
+                    <div class="tag-share">
+                        <div>
+                            <span>Tags:
+                            </span>
+                            <ul class="tag">
+                                {% for tag in welcome.tags | split(',') %}
+                                    <li>
+                                        <a href="#">{{ tag }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div>
+                            <span>Share:</span>
+                            <ul class="share">
+                                <li>
+                                    <div class="fb-share-button" data-href="{{ absolute_url(path('english_welcome_article', {'slug': welcome.slug}))}}" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ absolute_url(path('english_welcome_article', {'slug': welcome.slug}))}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                        <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-hashtags="itpc, itpcWestAfrica" data-show-count="true"><i class="fa fa-twitter"></i></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end tag-share -->
+
+                    <div class="comments">
+                        <div
+                            class="fb-comments"
+                            data-href="http://itpcwa.org{{ path('english_welcome_article', {'slug': welcome.slug})}}"
+                            data-width="750"
+                            data-numposts="5"></div>
+
+                    </div>
+                    <!-- end comments -->
+                </div>
+                <!-- end blog-content -->
+
+                <div class="blog-sidebar col col-lg-offset-1 col-lg-3 col-md-4 col-sm-5">
+                    {{ render(url('english_menu_droit'))}}
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+
+{% endblock %}
+
+
+
+{% block meta %}
+    <meta
+        name="keywords"
+        content="{% for tag in welcome.tags|split(',') %}{{ tag }}, {% endfor %}"/>
+    <meta name="description" content="{{ welcome.resume|raw }}"/>
+    <meta name="revisit" content="7 days"/>
+    <meta name="revisit-after" content="7 days">
+    <meta name="Author" content="ITPC West Africa, {{ welcome.publiePar|title }}">
+    <meta name="Copyright" content="www.itpcwa.org">
+    <meta name="Content-Language" content="FR">
+    <meta name="distribution" content="global"/>
+    <meta name="Audience" content="All"/>
+    <meta name="Robots" content="full">
+
+    <link
+        rel="canonical"
+        href="http://itpcwa.org{{ path('english_welcome_article', {'slug': welcome.slug})}}"/>
+    <meta property="og:locale" content="fr_FR"/>
+    <meta property="og:type" content="Item"/>
+    <meta property="og:title" content="{{ welcome.titre }}"/>
+    <meta property="og:description" content="{{ welcome.resume|raw }} "/>
+    <meta
+        property="og:url"
+        content="http://itpcwa.org{{ path('english_welcome_article', {'slug': welcome.slug})}}"/>
+    <meta property="og:site_name" content="ASCCI"/>
+    <meta property="article:section" content="Item"/>
+    <meta
+        property="article:published_time"
+        content="{{ welcome.publieLe|date('Y-m-d')}}T{{ welcome.publieLe|date('H:i:s')}}+00:00"/>
+    <meta
+        property="article:modified_time"
+        content="{{ welcome.modifieLe|date('Y-m-d')}}T{{ welcome.modifieLe|date('H:i:s')}}+00:00"/>
+    <meta
+        property="og:updated_time"
+        content="{{ welcome.modifieLe|date('Y-m-d')}}T{{ welcome.modifieLe|date('H:i:s')}}+00:00"/>
+    <meta
+        property="og:image"
+        content="http://itpcwa.org{{ vich_uploader_asset(welcome, 'imageFile') }}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="{{ welcome.resume|raw }}"/>
+    <meta name="twitter:title" content="{{ welcome.titre }}"/>
+    <meta name="twitter:domain" content="ASCCI"/>
+    <meta
+        name="twitter:image:src"
+        content="http://itpcwa.org{{ vich_uploader_asset(welcome, 'imageFile') }}"/>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://itpcwa.org"
+            },
+            "headline": "{{ welcome.titre }}",
+            "image": [
+                "http://itpcwa.org{{ vich_uploader_asset(welcome, 'imageFile') }}", "http://itpcwa.org/ressources/images/logo2.png"
+            ],
+            "datePublished": "{{ welcome.publieLe|date('Y-m-d')}}T{{ welcome.publieLe|date('H:i:s')}}+00" +
+                    ":00",
+            "dateModified": "{{ welcome.modifieLe|date('Y-m-d')}}T{{ welcome.modifieLe|date('H:i:s')}}+" +
+                    "00:00",
+            "author": {
+                "@type": "Person",
+                "name": "Delrodie AMOIKON"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{ welcome.titre }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "http://itpcwa.org{{ vich_uploader_asset(welcome, 'imageFile') }}"
+                }
+            },
+            "description": "{{ welcome.resume|raw }}"
+        }
+    </script>
+{% endblock %}
+
+{% block langue %}
+    <div class="language">
+        <span>
+            <i class="fa fa-globe"></i>
+            Lang:</span>
+        <a href="{{ absolute_url(path('english_welcome_article', {'slug': welcome.slug }))}}" title="English"><img
+            src="{{ absolute_url(asset('frontend/images/drapeau-en.png')) }}"
+            width="20"></a>
+        {% for bienvenue in bienvenuefrancais %}
+            <a href="{{ absolute_url(path('francais_bienvenue_article', {'slug': bienvenue.slug })) }}" title="French"><img
+            src="{{ absolute_url(asset('frontend/images/drapeau-fr.png')) }}"
+            width="20"></a>
+        {% endfor %}
+    </div>
+{% endblock %}

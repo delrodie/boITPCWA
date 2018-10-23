@@ -35,6 +35,7 @@ class EnglishController extends Controller
         $campagnes = $campagneRepository->findBy(array('statut'=>1), array('id'=>'DESC'), 1,0);
         $photos = $galerieRepository->findPhoto(8, 0); //dump($photos);die();
         $partenaires = $partenaireRepository->findBy(array('statut'=>1));
+        $welcomes = $em->getRepository('AppBundle:EnWelcome')->findBy(array('statut'=>1), array('id'=>'DESC'),1,0);
 
         return $this->render('default/en_index.html.twig',[
             'sliders'   => $sliders,
@@ -45,7 +46,8 @@ class EnglishController extends Controller
             'campagnes'   => $campagnes,
             'photos'   => $photos,
             'partenaires'   => $partenaires,
-        ]);   
+            'welcomes'   => $welcomes,
+        ]);
     }
 
     /**
