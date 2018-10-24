@@ -10,22 +10,25 @@
             {% block meta %}
             {% endblock %}
             <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}"/>
+
             {% block stylesheets %}
-                <link href="{{ absolute_url(asset('frontend/css/font-awesome.min.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/flaticon.css')) }}" rel="stylesheet">
-
-                <link href="{{ absolute_url(asset('frontend/css/bootstrap.min.css')) }}" rel="stylesheet">
-
-                <link href="{{ absolute_url(asset('frontend/css/animate.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/owl.carousel.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/owl.theme.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/slick.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/slick-theme.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/owl.transitions.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/jquery.fancybox.css')) }}" rel="stylesheet">
-                <link href="{{ absolute_url(asset('frontend/css/bootstrap-select.css')) }}" rel="stylesheet">
-
-                <link href="{{ absolute_url(asset('frontend/css/style.css')) }}" rel="stylesheet">
+                {% stylesheets
+                    'frontend/css/font-awesome.min.css'
+                    'frontend/css/flaticon.css'
+                    'frontend/css/bootstrap.min.css'
+                    'frontend/css/animate.css'
+                    'frontend/css/owl.carousel.css'
+                    'frontend/css/owl.theme.css'
+                    'frontend/css/slick.css'
+                    'frontend/css/slick-theme.css'
+                    'frontend/css/owl.transitions.css'
+                    'frontend/css/jquery.fancybox.css'
+                    'frontend/css/bootstrap-select.css'
+                    'frontend/css/style.css'
+                    filter='cssrewrite' output='backoffice/css/itpcwa.css'
+                %}
+                    <link rel="stylesheet" href="{{ absolute_url(asset_url)}}" />
+                {% endstylesheets %}
 
                 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media
                 queries -->
@@ -102,7 +105,7 @@
                                     </li>
                                     <li><a href="{{ absolute_url(path('francais_ressources'))}}">Ressources</a></li>
                                     <li><a href="{{ absolute_url(path('francais_galerie'))}}">Galerie</a></li>
-                                    <li><a href="{{ absolute_url(path('francais_contact'))}}">Contact</a></li>
+                                    <li><a href="{{ absolute_url(path('francais_contact'))}}">Contacts</a></li>
                                 </ul>
                             </div><!-- end of nav-collapse -->
                             <div class="search-social">
@@ -196,10 +199,15 @@
            
             
             {% block javascripts %}     
-            <script src="{{ absolute_url(asset('frontend/js/jquery.min.js')) }}"></script>
-            <script src="{{ absolute_url(asset('frontend/js/bootstrap.min.js')) }}"></script>
-            <script src="{{ absolute_url(asset('frontend/js/jquery-plugin-collection.js')) }}"></script>
-            <script src="{{ absolute_url(asset('frontend/js/script.js')) }}"></script>
+                {% javascripts
+                    'frontend/js/jquery.min.js'
+                    'frontend/js/bootstrap.min.js'
+                    'frontend/js/jquery-plugin-collection.js'
+                    'frontend/js/script.js'
+                    output='assets/js/itpcwa.js'
+                %}
+                <script src="{{ absolute_url(asset_url)}}"></script>
+                {% endjavascripts %}
             
             <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
